@@ -1,0 +1,36 @@
+<h1> Add a Merchant </h1> 
+
+<%= form_for @merchant do |f| %>
+  <div class="row">
+    <div class="small-9 columns">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-9 columns">
+      <%= f.label :address %><br>
+      <%= f.text_field :address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-9 columns">
+      <%= f.label :phone_number %><br>
+      <%= f.text_field :phone_number %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-9 columns">
+      <div class="projectinfo">
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+      </div>
+    </div>
+  </div>
+  <div class="action">
+    <%= f.submit class: "button medium left" %>
+  </div>
+ 
+
+<% end %>
+
