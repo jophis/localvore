@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'tags/:tag', to: 'farms#index', as: :tag
   resources :farms
   resources :merchants
 

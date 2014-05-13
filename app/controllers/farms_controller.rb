@@ -1,7 +1,11 @@
 class FarmsController < ApplicationController
 
 	def index
-		@farms = Farm.all
+		if params[:tag]
+			@farms = Farm.tagged_with(params[:tag])
+		else
+			@farms = Farm.all
+		end
 	end
 
 	def new
@@ -10,7 +14,7 @@ class FarmsController < ApplicationController
 
 	def create
 		@farm = Farm.new(farm_params)
-
+		puts "My Farm is currently #{@farm.inspect}"
 		if @farm.save
 			redirect_to @farm
 		else 
@@ -30,6 +34,6 @@ class FarmsController < ApplicationController
 
 	private
 		def farm_params
-			params.require(:farm).permit(:name, :address, :description, :phone_number)
+			params.require(:farm).permit(:tag_list, :name, :address, :description, :phone_number)
 		end
 end
