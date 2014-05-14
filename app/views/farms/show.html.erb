@@ -1,3 +1,4 @@
 <h1> <%= @farm.name %></h1>
 <h2> <%= @farm.address %> </h2>
 <p> <%= @farm.description %> </p>
+<p> Foods grown here: <%= raw @farm.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')%></p>

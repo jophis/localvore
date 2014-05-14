@@ -4,3 +4,9 @@
 <%= link_to "View all merchants", merchants_url %><br/>
 <%= link_to "Post a new Merchant", new_merchant_path %><br/>
 
+<div id= "tag_cloud">
+	<% tag_cloud Farm.tag_counts, %w[s m l] do |tag, css_class| %>
+		<%= link_to tag.name, tag_path(tag.name), class: css_class %>
+	<% end %>
+</div>
+
