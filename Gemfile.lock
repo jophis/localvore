@@ -134,10 +134,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
-<<<<<<< HEAD
-=======
   quiet_assets
->>>>>>> 4389f3edc6195d45fa5473609bc7602f10c7d378
   rails (= 4.1.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
