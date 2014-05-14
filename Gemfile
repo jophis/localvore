@@ -41,3 +41,4 @@ gem 'nokogiri'
 # Use debugger
 gem 'debugger', group: [:development, :test]
 gem 'quiet_assets'
+gem "geocoder"

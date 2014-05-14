@@ -1,11 +1,26 @@
 class FarmsController < ApplicationController
 
 	def index
-		if params[:tag]
+
+		# if params[:search]
+		# 	@farms = @current_location.nearbys(1, units: :km)
+
+		if params[:search]
+			@farms = Farm.tagged_with(params[:search])
+		elsif params[:tag]
 			@farms = Farm.tagged_with(params[:tag])
 		else
 			@farms = Farm.all
 		end
+
+		if params[:longitude] && params[:latitude]
+			@farms = @farms.near([params[:latitude], params[:longitude]], 20)
+		end
+
+		respond_to do |format|
+      format.html {}
+      format.js {}
+    end
 	end
 
 	def new
