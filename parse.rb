@@ -2,17 +2,18 @@ require 'nokogiri'
 require 'open-uri'
 
 page = Nokogiri::HTML(open("http://greenbeltfresh.ca/search-results-profile/737"))
-farm_name = page.css(".div_profile h1")
-address = page.at_css("div .right_profile_text").children
+name = page.css(".div_profile h1")
+location = page.at_css("div .right_profile_text").children
 website = page.at_css(".web a")
-
+description = page.at_css(".div_profile p:nth-of-type(3)")
+address = [location[0], location[2]].join(", ")
+product_table = page.css(".products_delivery_table_grower")
+phone_number = location[6][1]
 
 # address[0].children[0]
 # address[0].children[2]
 # @address.street = address[1]
 # @address.province = address[3]
-
-product_table = page.css(".products_delivery_table_grower")
 
 categories = {}
 product_table.each do |table|
@@ -23,5 +24,14 @@ product_table.each do |table|
   end
   categories[key] =  product_array
 end
-puts website
-puts [address[0], address[2]].join(", ")
+# puts farm_name
+# puts categories
+# puts website
+# puts location
+# puts description
+# puts phone_number
+
+# [18..853].each do |url|
+#     page = Nokogiri::HTML(open("http://greenbeltfresh.ca/search-results-profile/#{url.to_s}.html"))
+
+#   end
