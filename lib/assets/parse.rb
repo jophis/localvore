@@ -7,8 +7,9 @@ location = page.at_css("div .right_profile_text").children
 website = page.at_css(".web a")
 description = page.at_css(".div_profile p:nth-of-type(3)")
 address = [location[0], location[2]].join(", ")
-product_table = page.css(".products_delivery_table_grower")
 phone_number = location[6][1]
+product_table = page.css(".products_delivery_table_grower")
+
 
 # address[0].children[0]
 # address[0].children[2]
@@ -31,7 +32,16 @@ end
 # puts description
 # puts phone_number
 
-# [18..853].each do |url|
-#     page = Nokogiri::HTML(open("http://greenbeltfresh.ca/search-results-profile/#{url.to_s}.html"))
+[18..853].each do |url|
+    page = Nokogiri::HTML(open("http://greenbeltfresh.ca/search-results-profile/#{url.to_s}.html"))
+    name = page.css(".div_profile h1")
+    location = page.at_css("div .right_profile_text").children
+    address = [location[0], location[2]].join(", ")
+    phone_number = location[6][1]
+    description = page.at_css(".div_profile p:nth-of-type(3)")
+    website = page.at_css(".web a")
+    product_table = page.css(".products_delivery_table_grower")
+    categories.each { |category, product| }
 
-#   end
+    # create da model here
+  end
