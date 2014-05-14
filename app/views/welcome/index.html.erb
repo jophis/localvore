@@ -1,4 +1,10 @@
 <h1> Welcome to Localvore </h1>
+
+<%= form_tag farms_path, method: :get, authentication: false, id: 'search-form' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <%= link_to "View all farms", farms_url %><br/>
 <%= link_to "Post a new Farm", new_farm_path %> <br/>
 <%= link_to "View all merchants", merchants_url %><br/>

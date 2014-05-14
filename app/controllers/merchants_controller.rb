@@ -1,6 +1,11 @@
 class MerchantsController < ApplicationController
 	def index
 		@merchants = Merchant.all
+
+		respond_to do |format|
+      format.html {}
+      format.js {}
+    end
 	end
 
 	def new

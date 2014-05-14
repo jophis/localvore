@@ -11,28 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513183608) do
+ActiveRecord::Schema.define(version: 20140514174232) do
 
   create_table "farms", force: true do |t|
     t.string   "name"
     t.string   "address"
     t.string   "phone_number"
-    t.decimal  "longitude"
-    t.decimal  "latitude"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "latitude",     precision: 9, scale: 6
+    t.decimal  "longitude",    precision: 9, scale: 6
   end
 
   create_table "merchants", force: true do |t|
     t.string   "name"
     t.string   "address"
     t.string   "phone_number"
-    t.decimal  "longitude"
-    t.decimal  "latitude"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "latitude",     precision: 9, scale: 6
+    t.decimal  "longitude",    precision: 9, scale: 6
   end
 
   create_table "taggings", force: true do |t|
