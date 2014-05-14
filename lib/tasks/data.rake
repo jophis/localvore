@@ -1,7 +1,7 @@
 require 'parse.rb'
 
 namespace :data do
-  desc 'scrape date with nokogiri'
+  desc 'scrape data with nokogiri'
   task :scrape, [:environment] do
 
   end
