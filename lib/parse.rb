@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
+# page used to test scraper
 # page = Nokogiri::HTML(open("http://greenbeltfresh.ca/search-results-profile/737"))
 
 def scrape_data
