@@ -42,3 +42,6 @@ gem 'nokogiri'
 gem 'debugger', group: [:development, :test]
 gem 'quiet_assets'
 gem "geocoder"
+
+gem 'figaro'
+
