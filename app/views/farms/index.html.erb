@@ -14,3 +14,11 @@
 <div id="farms">
 <%= render @farms %>
 </div>
+
+
+<%= javascript_tag do %>
+	window.latitude = 43.6417
+	window.longitude = -79.38729999999998
+	window.coords = <%= raw @farms.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f }}.to_json
+	 %>
+	<% end %>
