@@ -24,26 +24,23 @@ def scrape_data
       end
       categories[key] =  product_array
     end
-    # product_array = []
-    # page.css(".product_cell").each do |product|
-    #   product_array << product.text
+
+    Farm.create!(
+      name: name,
+      address: address, 
+      phone_number: phone_number,
+      description: description,
+      website: website,
+      herb_list: categories["Flowers / Herbs"],
+      fruit_list: categories["Fruits"],
+      vegetable_list: categories["Vegetables"],
+      grain_list: categories["Grains"],
+      meat_list: categories["Meat"],
+      dairy_list: categories["Dairy / Eggs"],
+      nut_list: categories["Nuts / Seeds"],
+      prepared_list: cagtegories["Prepared and Processed Foods"],
+      beverage_list: categories["Wine and Beverages"]
+      )
+
   end
-
-  Farm.create!(
-    name: name,
-    address: address, 
-    phone_number: phone_number,
-    description: description,
-    website: website,
-    herb_list: herb_array,
-    fruit_list: fruit_array,
-    vegetable_list: vegetable_array,
-    grain_list: grain_array,
-    meat_list: meat_array,
-    dairy_list: dairy_array,
-    nuts_list: nut_array,
-    prepared_list: prepared_array,
-    beverage_list: beverage_array
-    )
-
 end
