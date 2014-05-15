@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514174232) do
+ActiveRecord::Schema.define(version: 20140514211703) do
 
   create_table "farms", force: true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140514174232) do
     t.datetime "updated_at"
     t.decimal  "latitude",     precision: 9, scale: 6
     t.decimal  "longitude",    precision: 9, scale: 6
+    t.string   "website"
   end
 
   create_table "merchants", force: true do |t|
