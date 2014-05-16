@@ -6,7 +6,7 @@ function initializeMap(latitude, longitude) {
 	var mapOptions = {
 		zoom: 8,
 		center: new google.maps.LatLng(latitude, longitude),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.TERRAIN
 	}
 
 	map = new google.maps.Map($('#map-canvas')[0], mapOptions)
