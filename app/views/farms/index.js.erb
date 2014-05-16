@@ -1,2 +1,2 @@
-$('#farms').html("<%= j (render @farms) %>");
+$('#farms').append("<%= j (render @farms) %>");
 $('.pagination').replaceWith('<%= j paginate(@farms) %>')
