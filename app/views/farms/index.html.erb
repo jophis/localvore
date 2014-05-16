@@ -8,6 +8,8 @@
   <%= submit_tag "Search" %>
 <% end %>
 
+<h5><%= page_entries_info @farms %></h5>
+
 <div id="map-canvas"></div>
 
 
@@ -15,6 +17,7 @@
 <%= render @farms %>
 </div>
 
+<p id="farms-pagination"><%= paginate @farms %></p>
 
 <%= javascript_tag do %>
 	window.latitude = 43.6417

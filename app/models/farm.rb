@@ -1,5 +1,5 @@
 class Farm < ActiveRecord::Base
-	validates :name, :presence => true
+	# validates :name, :presence => true
 	acts_as_taggable
   acts_as_taggable_on :herbs, :fruits, :vegetables, :grains, :meat, :dairy, :nuts, :prepared, :beverages
 	geocoded_by :address
