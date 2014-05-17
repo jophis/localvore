@@ -1,4 +1,6 @@
 class MerchantsController < ApplicationController
+	autocomplete :farm, :name, :extra_data => [:address]
+	
 	def index
 		@merchants = Merchant.all
 

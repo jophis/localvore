@@ -36,10 +36,12 @@ $(document).ready(function(){
 	var coords = window.coords;
 	var centerLat = window.latitude;
 	var centerLng = window.longitude;
-
+  
+  if($("#map-canvas").length ){
 	initializeMap( centerLat, centerLng );
 	// addMarker(centerLat, centerLng);
 	addMarkers(coords);
+	}
 
 
 	function geolocationSuccess(position) {
