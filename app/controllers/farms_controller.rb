@@ -14,7 +14,7 @@ class FarmsController < ApplicationController
 		end
 
 		# use near instead of created_at to show farms by distance, closest first
-		@farms = @farms.order(created_at: :desc).page(params[:page])
+		@farms = @farms.order(created_at: :asc).page(params[:page])
 
 		if params[:longitude] && params[:latitude]
 			@farms = @farms.near([params[:latitude], params[:longitude]], 20)
