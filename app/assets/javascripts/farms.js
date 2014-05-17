@@ -66,3 +66,15 @@ $(document).ready(function(){
 	};
 
 });
+
+$(function (){
+	if ($('.pagination').length) {
+		$(window).scroll(function() {
+			var url = $('.pagination span.next').children().attr('href');
+			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
+				$('.pagination').text('Fetching more farms...');
+				return $.getScript(url)
+			}
+		});
+	}
+});
