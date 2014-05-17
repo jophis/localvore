@@ -23,7 +23,7 @@ def scrape_data
       table.css(".product_cell").each do |product|
         product_array << product.text
       end
-      categories[key] =  product_array.
+      categories[key] =  product_array
     end
 
     Farm.create!(

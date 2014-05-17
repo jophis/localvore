@@ -4,4 +4,6 @@ class Farm < ActiveRecord::Base
   acts_as_taggable_on :herbs, :fruits, :vegetables, :grains, :meat, :dairy, :nuts, :prepared, :beverages
 	geocoded_by :address
 	after_validation :geocode, if: :address_changed?
+	has_many :merchantfarms
+	has_many :merchants, :through => :merchantfarms
 end

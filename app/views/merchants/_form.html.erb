@@ -35,10 +35,15 @@
       </div>
     </div>
   </div>
+  
+  <!-- This is code for the multi select tutorial i did on youtube -->
+ <!--  <%= fields_for(@merchant_farm) do |mf| %>
+    <div class='field'>
+      <% mf.label "All Farms" %> <br />
+      <%= collection_select(:farms, :id, Farm.all, :id, :name, {}, {:multiple=> true}) %>
+      <%end%>
+  <div class="action"> -->
 
- 
- 
-  <div class="action">
     <%= f.submit class: "button medium left" %>
   </div>
 
