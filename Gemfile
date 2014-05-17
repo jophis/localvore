@@ -32,7 +32,8 @@ gem 'figaro'
 gem 'kaminari'
 gem 'nokogiri'
 gem 'quiet_assets'
-
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

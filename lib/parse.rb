@@ -34,6 +34,7 @@ def scrape_data
       product_array << product.text
     end
 
+
     Farm.create!(
       name: name,
       address: address, 

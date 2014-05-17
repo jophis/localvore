@@ -20,9 +20,18 @@ class FarmsController < ApplicationController
 			@farms = @farms.near([params[:latitude], params[:longitude]], 20)
 		end
 
+		if params[:term]
+			@farms = Farm.where("name ILIKE ?", "%#{params[:term]}%")
+			# @farms_array = []
+			# @farms.each do |farm|
+			# 	@farms_array << farm.name
+			# end
+		end
+
 		respond_to do |format|
       format.html {}
       format.js {}
+      format.json{ render json: @farms}    
     end
 	end
 

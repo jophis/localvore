@@ -1,12 +1,13 @@
 var map;
 var markers = [];
 var coords = [];
+var flightPath; 
 
 function initializeMap(latitude, longitude) {
 	var mapOptions = {
 		zoom: 8,
 		center: new google.maps.LatLng(latitude, longitude),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.TERRAIN
 	}
 
 	map = new google.maps.Map($('#map-canvas')[0], mapOptions)
@@ -30,16 +31,40 @@ function initializeMap(latitude, longitude) {
 		});
 	}
 
+	function setPoly(){
+		var flightPlanCoordinates =	[];
+		var index
+		for (index = 0; index < polyCoords.length; ++index){
+			flightPlanCoordinates.push(latitude, longitude)
+			flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
+		};
+		var flightPath = new google.maps.Polyline({
+			path: flightPlanCoordinates,
+			geodesic: true,
+			strokeColor: '#FF0000',
+  	  strokeOpacity: 1.0,
+	    strokeWeight: 2
+		});
+		flightPath.setMap(map);
+	}
+	
+
+
+
+
 $(document).ready(function(){
 	var latitude = 0.0;
 	var longitude = 0.0;
 	var coords = window.coords;
 	var centerLat = window.latitude;
 	var centerLng = window.longitude;
-
+  
+  if($("#map-canvas").length ){
 	initializeMap( centerLat, centerLng );
 	// addMarker(centerLat, centerLng);
 	addMarkers(coords);
+	setPoly();
+	}
 
 
 	function geolocationSuccess(position) {
