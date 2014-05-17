@@ -1,6 +1,7 @@
 var map;
 var markers = [];
 var coords = [];
+var flightPath; 
 
 function initializeMap(latitude, longitude) {
 	var mapOptions = {
@@ -30,6 +31,27 @@ function initializeMap(latitude, longitude) {
 		});
 	}
 
+	function setPoly(){
+		var flightPlanCoordinates =	[];
+		var index
+		for (index = 0; index < polyCoords.length; ++index){
+			flightPlanCoordinates.push(latitude, longitude)
+			flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
+		};
+		var flightPath = new google.maps.Polyline({
+			path: flightPlanCoordinates,
+			geodesic: true,
+			strokeColor: '#FF0000',
+  	  strokeOpacity: 1.0,
+	    strokeWeight: 2
+		});
+		flightPath.setMap(map);
+	}
+	
+
+
+
+
 $(document).ready(function(){
 	var latitude = 0.0;
 	var longitude = 0.0;
@@ -41,6 +63,7 @@ $(document).ready(function(){
 	initializeMap( centerLat, centerLng );
 	// addMarker(centerLat, centerLng);
 	addMarkers(coords);
+	setPoly();
 	}
 
 

@@ -15,9 +15,16 @@
 
 <div id="map-canvas"></div>
 
+<!-- Hardcoding sources to all farms for now-->
+<% @source_list = Farm.all%>
+<%= @source_list %>
+
 <%= javascript_tag do %>
 	window.latitude = <%= @merchant.latitude %>;
 	window.longitude = <%= @merchant.longitude %>;
 	window.coords = <%= raw [{latitude: @merchant.latitude, longitude: @merchant.longitude}].to_json %>
+	window.polyCoords = <%= raw @source_list.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f }}.to_json
+		%>
+	flightPath.setMap(map);
 <% end %>
 
