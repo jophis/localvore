@@ -7,8 +7,8 @@ class FarmsController < ApplicationController
 
 		if params[:search]
 			# not working with % for pattern match
-			# @farms = Farm.tagged_with("%#{params[:search]}%")
-			@farms = Farm.tagged_with(params[:search])
+			@farms = Farm.tagged_with("%#{params[:search]}%")
+			# @farms = Farm.tagged_with(params[:search])
 		elsif params[:tag]
 			@farms = Farm.tagged_with(params[:tag])
 		else

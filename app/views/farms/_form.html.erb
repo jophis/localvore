@@ -27,13 +27,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :tags %><br />
-    <%= f.text_field :tag_list, class: "select2" %>
+    <%= f.label :tags_list, "Available Products"  %><br />
+    <%= f.text_area :tag_list %>
   </div>
+  <br>
   <div class="action">
     <%= f.submit class: "button medium left" %>
   </div>
  
 
 <% end %>
-

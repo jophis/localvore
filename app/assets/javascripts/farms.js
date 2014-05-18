@@ -102,3 +102,10 @@ $(function (){
 	}
 });
 
+$(document).ready(function() {
+  $("#farm_tag_list").select2({
+    tags: true,
+    tokenSeparators: [",", " "],
+    width: 'resolve'
+  });
+});
