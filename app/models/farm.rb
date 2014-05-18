@@ -6,4 +6,6 @@ class Farm < ActiveRecord::Base
 	after_validation :geocode, if: :address_changed?
 	has_many :merchantfarms
 	has_many :merchants, :through => :merchantfarms
+
+  
 end
