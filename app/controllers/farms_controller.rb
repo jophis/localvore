@@ -29,10 +29,10 @@ class FarmsController < ApplicationController
 		end
 
 		respond_to do |format|
-      format.html {}
-      format.js {}
-      format.json{ render json: @farms}    
-    end
+			format.html {}
+			format.js {}
+			format.json{ render json: @farms}    
+		end
 	end
 
 	def new
@@ -67,10 +67,11 @@ class FarmsController < ApplicationController
 			redirect_to @farm
 		else
 			render :edit
+		end
 	end
 
 	private
-		def farm_params
-			params.require(:farm).permit(:tag_list, :name, :address, :description, :phone_number, :website)
-		end
+	def farm_params
+		params.require(:farm).permit(:tag_list, :name, :address, :description, :phone_number, :website)
+	end
 end
