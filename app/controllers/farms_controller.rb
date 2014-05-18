@@ -6,7 +6,9 @@ class FarmsController < ApplicationController
 		# 	@farms = @current_location.nearbys(1, units: :km)
 
 		if params[:search]
-			@farms = Farm.tagged_with(params[:search])
+			# not working with % for pattern match
+			@farms = Farm.tagged_with("%#{params[:search]}%")
+			@farms = Farm.tagged_with("%]#{params[:search]}")
 		elsif params[:tag]
 			@farms = Farm.tagged_with(params[:tag])
 		else
@@ -68,6 +70,7 @@ class FarmsController < ApplicationController
 		else
 			render :edit
 	end
+end
 
 	private
 		def farm_params
