@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: crowdfunder_development
+  database: localvore_development
   pool: 5
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -42,11 +42,11 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: crowdfunder_test
+  database: localvore_test
   pool: 5
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: crowdfunder_production
+  database: localvore_production
   pool: 5
