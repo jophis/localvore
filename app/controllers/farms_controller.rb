@@ -57,6 +57,16 @@ class FarmsController < ApplicationController
 	end
 
 	def edit
+		@farm = Farm.find(params[:id])
+	end
+
+	def update
+		@farm = Farm.find(params[:id])
+
+		if @restaurant.update_attributes(farm_params)
+			redirect_to @farm
+		else
+			render :edit
 	end
 
 	private
