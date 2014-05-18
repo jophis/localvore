@@ -1,5 +1,3 @@
-<h1> Add a Farm </h1> 
-
 <%= form_for @farm do |f| %>
   <div class="row">
     <div class="small-9 columns">
@@ -28,16 +26,14 @@
     </div>
   </div>
 
-  
-
   <div class="field">
-    <%= f.label :tag_list, "Foods (separated by commas)"%><br />
-    <%= f.text_field :tag_list %>
+    <%= f.label :tags_list, "Available Products"  %><br />
+    <%= f.text_area :tag_list %>
   </div>
+  <br>
   <div class="action">
     <%= f.submit class: "button medium left" %>
   </div>
  
 
 <% end %>
-

@@ -6,7 +6,9 @@ class FarmsController < ApplicationController
 		# 	@farms = @current_location.nearbys(1, units: :km)
 
 		if params[:search]
-			@farms = Farm.tagged_with(params[:search])
+			# not working with % for pattern match
+			@farms = Farm.tagged_with("%#{params[:search]}%")
+			# @farms = Farm.tagged_with(params[:search])
 		elsif params[:tag]
 			@farms = Farm.tagged_with(params[:tag])
 		else
@@ -20,13 +22,14 @@ class FarmsController < ApplicationController
 			@farms = @farms.near([params[:latitude], params[:longitude]], 20)
 		end
 
-		if params[:term]
-			@farms = Farm.where("name ILIKE ?", "%#{params[:term]}%")
+# autocomplete
+		# if params[:term]
+		# 	@farms = Farm.where("name ILIKE ?", "%#{params[:term]}%")
 			# @farms_array = []
 			# @farms.each do |farm|
 			# 	@farms_array << farm.name
 			# end
-		end
+		# end
 
 		respond_to do |format|
 			format.html {}
@@ -69,6 +72,7 @@ class FarmsController < ApplicationController
 			render :edit
 		end
 	end
+end
 
 	private
 	def farm_params
