@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517184403) do
+ActiveRecord::Schema.define(version: 20140518223457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breakpoints", force: true do |t|
+    t.integer  "pledge"
+    t.text     "info"
+    t.string   "pledge_title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "comment_text"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "farms", force: true do |t|
     t.string   "name"
@@ -26,6 +43,11 @@ ActiveRecord::Schema.define(version: 20140517184403) do
     t.decimal  "latitude",     precision: 9, scale: 6
     t.decimal  "longitude",    precision: 9, scale: 6
     t.string   "website"
+  end
+
+  create_table "farms_merchants", id: false, force: true do |t|
+    t.integer "farm_id"
+    t.integer "merchant_id"
   end
 
   create_table "merchantfarms", force: true do |t|
@@ -85,5 +107,19 @@ ActiveRecord::Schema.define(version: 20140517184403) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                        null: false
+    t.string   "crypted_password",             null: false
+    t.string   "salt",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "name"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
 
 end

@@ -4,8 +4,5 @@ class Farm < ActiveRecord::Base
   # acts_as_taggable_on
 	geocoded_by :address
 	after_validation :geocode, if: :address_changed?
-	has_many :merchantfarms
-	has_many :merchants, :through => :merchantfarms
-
-  
+	has_and_belongs_to_many :merchants
 end

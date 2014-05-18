@@ -1,5 +1,3 @@
-<h1> Add a Merchant </h1> 
-
 <%= form_for @merchant do |f| %>
   <div class="row">
     <div class="small-9 columns">
@@ -35,15 +33,7 @@
       </div>
     </div>
   </div>
-  
-  <!-- This is code for the multi select tutorial i did on youtube -->
- <!--  <%= fields_for(@merchant_farm) do |mf| %>
-    <div class='field'>
-      <% mf.label "All Farms" %> <br />
-      <%= collection_select(:farms, :id, Farm.all, :id, :name, {}, {:multiple=> true}) %>
-      <%end%>
-  <div class="action"> -->
-
+    <br>
     <%= f.submit class: "button medium left" %>
   </div>
 

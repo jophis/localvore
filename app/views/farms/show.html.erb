@@ -1,4 +1,8 @@
 <h1> <%= @farm.name %></h1>
+<% if !@farm.website.nil? %>
+  <%= link_to @farm.website, @farm.website %><br>
+<% end %>
+<br>
 <%= link_to "Home", root_url %><br />
 
 <%= link_to "Back to Farms", farms_url %> | <%= link_to "Edit Farm", edit_farm_path(@farm) %>|
