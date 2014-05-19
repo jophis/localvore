@@ -1,5 +1,5 @@
 class FarmsController < ApplicationController
-	before_filter :tag_names only: [:new, :edit]
+	before_filter :tag_names, only: [:new, :edit]
 
 	def index
 		# if params[:search]

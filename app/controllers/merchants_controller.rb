@@ -1,6 +1,6 @@
 class MerchantsController < ApplicationController
 	autocomplete :farm, :name, :extra_data => [:address]
-	before_filter :farm_names only: [:new, :edit]
+	before_filter :farm_names, only: [:new, :edit]
 
 	
 	def index
@@ -39,7 +39,7 @@ class MerchantsController < ApplicationController
 
 	private
 		def merchant_params
-			params.require(:merchant).permit(:source_list, :merchant_farms, :name, :address, :description, :phone_number)
+			params.require(:merchant).permit(:source_list, :name, :address, :description, :phone_number)
 		end
 
 		def farm_names
