@@ -39,7 +39,7 @@ class MerchantsController < ApplicationController
 
 	private
 	def merchant_params
-		params.require(:merchant).permit(:source_list, :name, :address, :description, :phone_number)
+		params.require(:merchant).permit(:source_list, :name, :address, :description, :phone_number, :website)
 	end
 
 	def farm_names
