@@ -38,8 +38,9 @@
 
   <dv class="field">
     <%= f.label :vendor_list %><br>
-    <%= f,text_area :vendor_list %>
+    <%= f.text_area :vendor_list %>
   </div>
+  <br>
   <br>
   <div class="action">
     <%= f.submit class: "button medium left" %>
@@ -48,4 +49,6 @@
 
 <%= javascript_tag do%>
   var tags = <%= raw tag_names %>;
+  var merchant_names = <%= raw merchant_names.to_json %>;
+  var farm_names = farm_names;
 <% end %>

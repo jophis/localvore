@@ -1,5 +1,6 @@
 class FarmsController < ApplicationController
 	before_filter :tag_names, only: [:new, :edit]
+	before_filter :merchant_list, only: [:new, :edit]
 
 	def index
 		# if params[:search]
@@ -80,5 +81,10 @@ class FarmsController < ApplicationController
 
 	def tag_names
 		@tag_names = Farm.tag_counts.inject([]) do |array, tag| array.push(tag.name); array end
+	end
+
+	def merchant_list
+		@merchant_names = Merchant.all.map do |merchant| {id: merchant.id, text: merchant.name}
+		end
 	end
 end

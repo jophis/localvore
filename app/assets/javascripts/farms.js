@@ -110,3 +110,13 @@ $(document).ready(function() {
 		width: 'resolve'
 	});
 });
+
+$(document).ready(function() {
+	$("#farm_vendor_list").select2({
+		data: merchant_names,
+		multiple: true,
+		createSearchChoice: function() { return null; },
+		tokenSeparators: [",", " "],
+		width: 'resolve'
+	});
+});
