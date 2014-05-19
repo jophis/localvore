@@ -1,6 +1,7 @@
 class MerchantsController < ApplicationController
 	autocomplete :farm, :name, :extra_data => [:address]
 	before_filter :farm_names, only: [:new, :edit]
+	before_filter :tag_names, only: [:new, :edit]
 
 	
 	def index
@@ -45,6 +46,10 @@ class MerchantsController < ApplicationController
 	def farm_names
 		@farm_names = Farm.all.map do |farm| {id: farm.id, text: farm.name}
 		end
+	end
+
+	def tag_names
+		@tag_names = Farm.tag_counts.inject([]) do |array, tag| array.push(tag.name); array end
 	end
 
 	end

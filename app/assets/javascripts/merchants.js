@@ -8,3 +8,12 @@ $(document).ready(function() {
     width: 'resolve'
   });
 });
+
+$(document).ready(function() {
+  $("#merchant_tag_list").select2({
+    tags: tags,
+    createSearchChoice: function() { return null; },
+    tokenSeparators: [",", " "],
+    width: 'resolve'
+  });
+});
