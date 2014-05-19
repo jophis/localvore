@@ -7,9 +7,9 @@ class MerchantsController < ApplicationController
 		@merchants = Merchant.all
 
 		respond_to do |format|
-      format.html {}
-      format.js {}
-    end
+			format.html {}
+			format.js {}
+		end
 	end
 
 	def new
@@ -38,12 +38,13 @@ class MerchantsController < ApplicationController
 	end
 
 	private
-		def merchant_params
-			params.require(:merchant).permit(:source_list, :name, :address, :description, :phone_number)
-		end
+	def merchant_params
+		params.require(:merchant).permit(:source_list, :name, :address, :description, :phone_number)
+	end
 
-		def farm_names
-			@farm_names = Farm.all.inject([]) do |array, tag| array.push(tag.name); array end
+	def farm_names
+		@farm_names = Farm.all.map do |farm| {id: farm.id, text: farm.name}
 		end
+	end
 
-end
+	end

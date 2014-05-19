@@ -29,7 +29,7 @@
     <div class="small-9 columns">
       <div class="projectinfo">
         <%= f.label :source_list %><br>
-        <%= f.text_field :source_list %>
+        <%= f.text_area :source_list %>
       </div>
     </div>
   </div>
@@ -40,5 +40,6 @@
 <% end %>
 
 <%= javascript_tag do %>
-  var farm_names = <%= raw farm_names %>;
+  var farm_names = <%= raw farm_names.to_json %>;
+  var tags = tags
 <% end %>

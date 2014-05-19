@@ -13,41 +13,41 @@ function initializeMap(latitude, longitude) {
 	map = new google.maps.Map($('#map-canvas')[0], mapOptions)
 }
 
-	function addMarker( latitude, longitude ) {
+function addMarker( latitude, longitude ) {
+	var myMarker = new google.maps.Marker({
+		position: new google.maps.LatLng(latitude, longitude),
+		map: map
+	});
+}
+
+function addMarkers(coords) {
+	var image = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+	coords.forEach (function(coord) {
 		var myMarker = new google.maps.Marker({
-			position: new google.maps.LatLng(latitude, longitude),
-			map: map
+			position: new google.maps.LatLng(coord.latitude, coord.longitude),
+			map: map,
+			icon: image
 		});
-	}
+	});
+}
 
-	function addMarkers(coords) {
-		var image = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
-		coords.forEach (function(coord) {
-			var myMarker = new google.maps.Marker({
-				position: new google.maps.LatLng(coord.latitude, coord.longitude),
-				map: map,
-				icon: image
-			});
-		});
-	}
+function setPoly(){
+	var flightPlanCoordinates =	[];
+	var index
+	for (index = 0; index < polyCoords.length; ++index){
+		flightPlanCoordinates.push(latitude, longitude)
+		flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
+	};
+	var flightPath = new google.maps.Polyline({
+		path: flightPlanCoordinates,
+		geodesic: true,
+		strokeColor: '#FF0000',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	});
+	flightPath.setMap(map);
+}
 
-	function setPoly(){
-		var flightPlanCoordinates =	[];
-		var index
-		for (index = 0; index < polyCoords.length; ++index){
-			flightPlanCoordinates.push(latitude, longitude)
-			flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
-		};
-		var flightPath = new google.maps.Polyline({
-			path: flightPlanCoordinates,
-			geodesic: true,
-			strokeColor: '#FF0000',
-  	  strokeOpacity: 1.0,
-	    strokeWeight: 2
-		});
-		flightPath.setMap(map);
-	}
-	
 
 
 
@@ -58,35 +58,35 @@ $(document).ready(function(){
 	var coords = window.coords;
 	var centerLat = window.latitude;
 	var centerLng = window.longitude;
-  
-  if($("#map-canvas").length ){
-	initializeMap( centerLat, centerLng );
+	
+	if($("#map-canvas").length ){
+		initializeMap( centerLat, centerLng );
 	// addMarker(centerLat, centerLng);
 	addMarkers(coords);
 	setPoly();
-	}
+}
 
 
-	function geolocationSuccess(position) {
-		latitude = position.coords.latitude;
-		longitude = position.coords.longitude;
+function geolocationSuccess(position) {
+	latitude = position.coords.latitude;
+	longitude = position.coords.longitude;
 
-		console.log(latitude + " " + longitude);
+	console.log(latitude + " " + longitude);
 
-	}
+}
 
-	function geolocationError(error) {
-		console.log("There was an error :( ");
-	
-	}
-	
+function geolocationError(error) {
+	console.log("There was an error :( ");
+		
+}
 
-	if ("geolocation" in navigator) {
-		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
-	} 
-	else {
-		alert("Get a better browser!");
-	};
+
+if ("geolocation" in navigator) {
+	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
+} 
+else {
+	alert("Get a better browser!");
+};
 
 });
 
@@ -103,10 +103,10 @@ $(function (){
 });
 
 $(document).ready(function() {
-  $("#farm_tag_list").select2({
-    tags: tags,
-    createSearchChoice: function() { return null; },
-    tokenSeparators: [",", " "],
-    width: 'resolve'
-  });
+	$("#farm_tag_list").select2({
+		tags: tags,
+		createSearchChoice: function() { return null; },
+		tokenSeparators: [",", " "],
+		width: 'resolve'
+	});
 });
