@@ -1,6 +1,6 @@
 <h1> <%= @farm.name %></h1>
 <% if !@farm.website.nil? %>
-  <%= link_to @farm.website, @farm.website %><br>
+  <%= link_to @farm.website, @farm.website, target: "_blank" %><br>
 <% end %>
 <br>
 <%= link_to "Home", root_url %><br />
