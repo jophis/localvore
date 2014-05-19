@@ -3,24 +3,17 @@ class FarmsController < ApplicationController
 	before_filter :merchant_list, only: [:new, :edit]
 
 	def index
-		# if params[:search]
-		# 	@farms = @current_location.nearbys(1, units: :km)
-
-		if params[:search]
+		@farms = if params[:search]
 			# not working with % for pattern match
 			# @farms = Farm.tagged_with("%#{params[:search]}%")
-			@farms = Farm.tagged_with(params[:search])
+			Farm.tagged_with(params[:search]).page(params[:page])
 		elsif params[:tag]
-			@farms = Farm.tagged_with(params[:tag])
+			Farm.tagged_with(params[:tag]).page(params[:page])
+		elsif params[:longitude] && params[:latitude]
+			# near not working, believe to be caused by pagination
+			Farm.near([params[:latitude], params[:longitude]], 20, units: :km).page(params[:page])
 		else
-			@farms = Farm.all
-		end
-
-		# use near instead of created_at to show farms by distance, closest first
-		@farms = @farms.order(created_at: :asc).page(params[:page])
-
-		if params[:longitude] && params[:latitude]
-			@farms = @farms.near([params[:latitude], params[:longitude]], 20)
+			Farm.all.order(name: :asc).page(params[:page])
 		end
 
 # autocomplete

@@ -1,7 +1,7 @@
 var map;
 var markers = [];
 var coords = [];
-var flightPath; 
+// var flightPath; 
 
 function initializeMap(latitude, longitude) {
 	var mapOptions = {
@@ -31,22 +31,22 @@ function addMarkers(coords) {
 	});
 }
 
-function setPoly(){
-	var flightPlanCoordinates =	[];
-	var index
-	for (index = 0; index < polyCoords.length; ++index){
-		flightPlanCoordinates.push(latitude, longitude)
-		flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
-	};
-	var flightPath = new google.maps.Polyline({
-		path: flightPlanCoordinates,
-		geodesic: true,
-		strokeColor: '#FF0000',
-		strokeOpacity: 1.0,
-		strokeWeight: 2
-	});
-	flightPath.setMap(map);
-}
+// function setPoly(){
+// 	var flightPlanCoordinates =	[];
+// 	var index
+// 	for (index = 0; index < polyCoords.length; ++index){
+// 		flightPlanCoordinates.push(latitude, longitude)
+// 		flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
+// 	};
+// 	var flightPath = new google.maps.Polyline({
+// 		path: flightPlanCoordinates,
+// 		geodesic: true,
+// 		strokeColor: '#FF0000',
+// 		strokeOpacity: 1.0,
+// 		strokeWeight: 2
+// 	});
+// 	flightPath.setMap(map);
+// }
 
 
 
@@ -61,33 +61,35 @@ $(document).ready(function(){
 	
 	if($("#map-canvas").length ){
 		initializeMap( centerLat, centerLng );
-	// addMarker(centerLat, centerLng);
-	addMarkers(coords);
-	setPoly();
-}
+		addMarkers(coords);
+		// setPoly();
+	}
 
 
-function geolocationSuccess(position) {
-	latitude = position.coords.latitude;
-	longitude = position.coords.longitude;
+	function geolocationSuccess(position) {
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
 
-	console.log(latitude + " " + longitude);
+		$.ajax({
+			url: "/farms",
+			method: "GET",
+			data: {
+				latitude: latitude,
+				longitude: longitude
+			},
+			datatType: 'script'
+		});
+	}
 
-}
+	function geolocationError(error) {
+		console.log("There was an error :( ");
+	}
 
-function geolocationError(error) {
-	console.log("There was an error :( ");
-		
-}
-
-
-if ("geolocation" in navigator) {
+	if ("geolocation" in navigator) {
 	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
-} 
-else {
-	alert("Get a better browser!");
-};
-
+	}else {
+		alert("Get a better browser!");
+	};
 });
 
 $(function (){
@@ -109,14 +111,14 @@ $(document).ready(function() {
 		tokenSeparators: [",", " "],
 		width: 'resolve'
 	});
-});
 
-$(document).ready(function() {
-	$("#farm_vendor_list").select2({
-		data: merchant_names,
-		multiple: true,
-		createSearchChoice: function() { return null; },
-		tokenSeparators: [",", " "],
-		width: 'resolve'
-	});
+	$(function() {
+		$("#farm_vendor_list").select2({
+			data: merchant_names,
+			multiple: true,
+			createSearchChoice: function() { return null; },
+			tokenSeparators: [",", " "],
+			width: 'resolve'
+		});
+	})
 });

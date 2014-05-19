@@ -15,8 +15,6 @@ class MerchantsController < ApplicationController
 
 	def new
 		@merchant = Merchant.new
-		@all_farms = Farm.all
-		# @merchant_farm = @merchant.merchantfarms.build
 	end
 
 	def create
