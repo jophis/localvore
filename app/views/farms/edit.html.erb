@@ -2,4 +2,4 @@
 <br>
 <div class="links"><%= link_to "Back", @farm %></div>
 
-<%= render "form" %>
+<%= render partial: "form", locals:{tag_names: @tag_names} %>

@@ -34,6 +34,8 @@
   <div class="action">
     <%= f.submit class: "button medium left" %>
   </div>
- 
+<% end %>
 
+<%= javascript_tag do%>
+  var tags = <%= raw tag_names %>;
 <% end %>

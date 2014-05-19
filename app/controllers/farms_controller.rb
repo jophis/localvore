@@ -1,7 +1,7 @@
 class FarmsController < ApplicationController
+	before_filter :tag_names only: [:new, :edit]
 
 	def index
-
 		# if params[:search]
 		# 	@farms = @current_location.nearbys(1, units: :km)
 
@@ -76,5 +76,9 @@ class FarmsController < ApplicationController
 	private
 	def farm_params
 		params.require(:farm).permit(:tag_list, :name, :address, :description, :phone_number, :website)
+	end
+
+	def tag_names
+		@tag_names = Farm.tag_counts.inject([]) do |array, tag| array.push(tag.name); array end
 	end
 end

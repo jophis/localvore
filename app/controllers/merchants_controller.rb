@@ -1,6 +1,6 @@
 class MerchantsController < ApplicationController
 	autocomplete :farm, :name, :extra_data => [:address]
-	before_filer :load_farms, only: {:new, :create}
+	before_filter :farm_names only: [:new, :edit]
 
 	
 	def index
@@ -42,8 +42,8 @@ class MerchantsController < ApplicationController
 			params.require(:merchant).permit(:source_list, :merchant_farms, :name, :address, :description, :phone_number)
 		end
 
-		def load_farms
-			@farms = Farm.all
+		def farm_names
+			@farm_names = Farm.all.inject([]) do |array, tag| array.push(tag.name); array end
 		end
 
 end

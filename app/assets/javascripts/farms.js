@@ -104,7 +104,7 @@ $(function (){
 
 $(document).ready(function() {
   $("#farm_tag_list").select2({
-    tags: true,
+    tags: tags,
     createSearchChoice: function() { return null; },
     tokenSeparators: [",", " "],
     width: 'resolve'
