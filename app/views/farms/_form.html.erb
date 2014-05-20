@@ -48,7 +48,6 @@
 <% end %>
 
 <%= javascript_tag do%>
-  var tags = <%= raw tag_names %>;
+  var tag_names = <%= raw tag_names %>;
   var merchant_names = <%= raw merchant_names.to_json %>;
-  var farm_names = farm_names;
 <% end %>

@@ -1,9 +1,14 @@
-$('#farms').html("<%= j (render @farms) %>");
+<% if params[:search] && params[:page].nil? %>
+  $('#farms').html("<%= j (render @farms) %>");
+<% else %>
+  $('#farms').append("<%= j (render @farms) %>");
+<% end %>
+
 $('.pagination').replaceWith('<%= j paginate(@farms) %>')
 
 if ($('#map-canvas').length > 0) {
   window.longitude = <%= params[:longitude] %>;
-  window.latitude =  <%= params[:latitude] %>;
+  window.latitude =  <%= params[:latitude] %>;{}
   initializeMap();
 
   window.coords = <%= raw @restaurants.map {|r| {latitude: r.latitude.to_f, longitude: r.longitude.to_f}}.to_json %>;
