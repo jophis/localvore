@@ -6,28 +6,20 @@ class FarmsController < ApplicationController
 		@farms = if params[:search]
 			# not working with % for pattern match
 			# @farms = Farm.tagged_with("%#{params[:search]}%")
-			Farm.tagged_with(params[:search]).page(params[:page])
+			Farm.tagged_with(params[:search])
 		elsif params[:tag]
-			Farm.tagged_with(params[:tag]).page(params[:page])
+			Farm.tagged_with(params[:tag])
 		elsif params[:longitude] && params[:latitude]
-			# near not working, believe to be caused by pagination
-			Farm.near([params[:latitude], params[:longitude]], 20, units: :km).page(params[:page])
+			Farm.near([params[:latitude], params[:longitude]], 20, units: :km)
 		else
-			Farm.all.order(name: :asc).page(params[:page])
+			Farm.all
 		end
 
-# autocomplete
-		# if params[:term]
-		# 	@farms = Farm.where("name ILIKE ?", "%#{params[:term]}%")
-			# @farms_array = []
-			# @farms.each do |farm|
-			# 	@farms_array << farm.name
-			# end
-		# end
+		@farms = @farms.order(name: :asc).page(params[:page])
 
 		respond_to do |format|
-			format.html {}
-			format.js {}
+			format.html
+			format.js
 			format.json{ render json: @farms}    
 		end
 	end

@@ -53,9 +53,9 @@ function addMarkers(coords) {
 
 
 $(document).ready(function(){
-	var latitude = 0.0;
-	var longitude = 0.0;
-	var coords = window.coords;
+	// var latitude = 0.0;
+	// var longitude = 0.0;
+	// var coords = window.coords;
 	var centerLat = window.latitude;
 	var centerLng = window.longitude;
 	
