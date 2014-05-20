@@ -75,7 +75,9 @@ $(document).ready(function(){
 		console.log("There was an error :( ");
 	}
 
+// Add condition so this doesnt run on every page
 	if ("geolocation" in navigator) {
+		console.log("geolocation running...")
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
 	}else {
 		alert("Get a better browser!");

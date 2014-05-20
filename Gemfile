@@ -27,8 +27,9 @@ gem 'spring',        group: :development
 
 
 gem 'debugger', group: [:development, :test]
-gem 'geocoder'
+gem 'foundation-rails'
 gem 'figaro'
+gem 'geocoder'
 gem 'kaminari'
 gem 'nokogiri'
 gem 'quiet_assets'

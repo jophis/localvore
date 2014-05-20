@@ -12,6 +12,8 @@
  *
  *= require select2
  *= require_self
+ *= require foundation_and_overrides
+
  *= require_tree .
  */
 
