@@ -1,19 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Localvore</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
- <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{Figaro.env.google_maps_api}&sensor=false" %>
+	<title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+	<%= stylesheet_link_tag    "application" %>
+	<%= javascript_include_tag "vendor/modernizr" %>
+	<%= csrf_meta_tags %>
 
 
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
+
+
+	<%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{Figaro.env.google_maps_api}&sensor=false" %>
+
 </head>
+
 <body>
+	<nav class="top-bar" data-topbar>
+		<ul class="title-area">
+			<li class="name">
+				<h1><%= link_to "Localvore", root_path %></h1>
+			</li>
+			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
 
-<%= yield %>
+		<section class="top-bar-section">
+			<ul class="right">
+				<li><a href="#">Merchants</a></li>
+				<li><a href="#">Farms</a></li>
+				<li><a href="#">Ingredients</a></li>
+			</ul>
+		</section>
+	</nav>
 
+
+
+
+	<div class="row">
+		<div class="large-12 columns">
+			<%= yield %>
+		</div>
+	</div>
+	<%= javascript_include_tag 'application' %>
 </body>
 </html>
