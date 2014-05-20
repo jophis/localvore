@@ -1,5 +1,4 @@
 class MerchantsController < ApplicationController
-	autocomplete :farm, :name, :extra_data => [:address]
 	before_filter :farm_names, only: [:new, :edit]
 	before_filter :tag_names, only: [:new, :edit]
 

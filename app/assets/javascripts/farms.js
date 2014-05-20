@@ -2,7 +2,7 @@ $(function (){
 	if ($('.pagination').length) {
 		$(window).scroll(function() {
 			var url = $('.pagination span.next').children().attr('href');
-			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 200) {
+			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 250) {
 				$('.pagination').text('Fetching more farms...');
 				return $.getScript(url)
 			}
@@ -13,10 +13,10 @@ $(function (){
 var map;
 var markers = [];
 
-function initializeMap(latitude, longitude) {
+function initializeMap() {
 	var mapOptions = {
 		zoom: 8,
-		center: new google.maps.LatLng(latitude, longitude),
+		center: new google.maps.LatLng(43.64745269, -79.3870772),
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	}
 
@@ -51,16 +51,14 @@ function clearMarkers() {
 }
 
 $(document).ready(function(){
+
+	if ($("#map-canvas").length > 0 ) {
+			initializeMap();
+	}
+
 	function geolocationSuccess(position) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
-
-		if ($("#map-canvas").length > 0 ) {
-			initializeMap( latitude, longitude );
-		if (coords.length > 0) {
-			addMarkers(coords);
-		}
-	}
 
 		$.ajax({
 			url: "/farms",

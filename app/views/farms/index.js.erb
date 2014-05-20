@@ -8,7 +8,13 @@ $('#farms').append("<%= j (render @farms) %>");
 
 $('.pagination').replaceWith('<%= j paginate(@farms) %>')
 
+coords = <%= raw @farms.map {|f| {latitude: f.latitude.to_f, longitude: f.longitude.to_f}}.to_json %>;
 
-var coords = <%= raw @farms.map {|f| {latitude: f.latitude.to_f, longitude: f.longitude.to_f}}.to_json %>;
-clearMarkers();
+var bounds = new google.maps.LatLngBounds();
+coords.forEach(function(coord) {
+  myLatLng = new google.maps.LatLng(coord.latitude, coord.longitude);
+  bounds.extend(myLatLng);
+});
+map.fitBounds(bounds);
+
 addMarkers(coords);
