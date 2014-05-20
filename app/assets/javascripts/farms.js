@@ -1,7 +1,17 @@
+$(function (){
+	if ($('.pagination').length) {
+		$(window).scroll(function() {
+			var url = $('.pagination span.next').children().attr('href');
+			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 200) {
+				$('.pagination').text('Fetching more farms...');
+				return $.getScript(url)
+			}
+		});
+	}
+});
+
 var map;
 var markers = [];
-var coords = [];
-// var flightPath; 
 
 function initializeMap(latitude, longitude) {
 	var mapOptions = {
@@ -18,6 +28,7 @@ function addMarker( latitude, longitude ) {
 		position: new google.maps.LatLng(latitude, longitude),
 		map: map
 	});
+	markers.push(myMarker);
 }
 
 function addMarkers(coords) {
@@ -28,47 +39,28 @@ function addMarkers(coords) {
 			map: map,
 			icon: image
 		});
+		markers.push(myMarker);
 	});
 }
 
-// function setPoly(){
-// 	var flightPlanCoordinates =	[];
-// 	var index
-// 	for (index = 0; index < polyCoords.length; ++index){
-// 		flightPlanCoordinates.push(latitude, longitude)
-// 		flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude)
-// 	};
-// 	var flightPath = new google.maps.Polyline({
-// 		path: flightPlanCoordinates,
-// 		geodesic: true,
-// 		strokeColor: '#FF0000',
-// 		strokeOpacity: 1.0,
-// 		strokeWeight: 2
-// 	});
-// 	flightPath.setMap(map);
-// }
-
-
-
-
+function clearMarkers() {
+	markers.forEach(function(marker) {
+		marker.setMap(null);
+	});
+	markers = [];
+}
 
 $(document).ready(function(){
-	// var latitude = 0.0;
-	// var longitude = 0.0;
-	// var coords = window.coords;
-	var centerLat = window.latitude;
-	var centerLng = window.longitude;
-	
-	if($("#map-canvas").length ){
-		initializeMap( centerLat, centerLng );
-		addMarkers(coords);
-		// setPoly();
-	}
-
-
 	function geolocationSuccess(position) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
+
+		if ($("#map-canvas").length > 0 ) {
+			initializeMap( latitude, longitude );
+		if (coords.length > 0) {
+			addMarkers(coords);
+		}
+	}
 
 		$.ajax({
 			url: "/farms",
@@ -77,7 +69,7 @@ $(document).ready(function(){
 				latitude: latitude,
 				longitude: longitude
 			},
-			datatType: 'script'
+			dataType: 'script'
 		});
 	}
 
@@ -90,18 +82,6 @@ $(document).ready(function(){
 	}else {
 		alert("Get a better browser!");
 	};
-});
-
-$(function (){
-	if ($('.pagination').length) {
-		$(window).scroll(function() {
-			var url = $('.pagination span.next').children().attr('href');
-			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 150) {
-				$('.pagination').text('Fetching more farms...');
-				return $.getScript(url)
-			}
-		});
-	}
 });
 
 $(document).ready(function() {

@@ -1,7 +1,9 @@
 <%= link_to farm_path(farm.id) do %>
   <h5>
     <%= link_to farm.name, farm %><br/>
-		<%= farm.description %> <br/>
+    <% if farm.description %>
+		  <%= farm.description %> <br/>
+    <% end%>
 		<%= farm.address %>
   </h5>
 <% end %>

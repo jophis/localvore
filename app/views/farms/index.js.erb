@@ -1,16 +1,14 @@
 <% if params[:search] && params[:page].nil? %>
-  $('#farms').html("<%= j (render @farms) %>");
+$('#farms').html("<%= j (render @farms) %>");
+<% elsif params[:longitude] && params[:latitude] %>
+$('#farms').html("<%= j (render @farms) %>");
 <% else %>
-  $('#farms').append("<%= j (render @farms) %>");
+$('#farms').append("<%= j (render @farms) %>");
 <% end %>
 
 $('.pagination').replaceWith('<%= j paginate(@farms) %>')
 
-if ($('#map-canvas').length > 0) {
-  window.longitude = <%= params[:longitude] %>;
-  window.latitude =  <%= params[:latitude] %>;
-  initializeMap();
 
-  window.coords = <%= raw @restaurants.map {|r| {latitude: r.latitude.to_f, longitude: r.longitude.to_f}}.to_json %>;
-  if (coords.length > 0) addMarkers(coords);
-  }
+var coords = <%= raw @farms.map {|f| {latitude: f.latitude.to_f, longitude: f.longitude.to_f}}.to_json %>;
+clearMarkers();
+addMarkers(coords);

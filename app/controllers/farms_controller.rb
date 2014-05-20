@@ -4,18 +4,16 @@ class FarmsController < ApplicationController
 
 	def index
 		@farms = if params[:search]
-			# not working with % for pattern match
-			# @farms = Farm.tagged_with("%#{params[:search]}%")
-			Farm.tagged_with(params[:search])
+			Farm.tagged_with(params[:search], :wild => true, :any => true).order(name: :asc)
 		elsif params[:tag]
-			Farm.tagged_with(params[:tag])
+			Farm.tagged_with(params[:tag]).order(name: :asc)
 		elsif params[:longitude] && params[:latitude]
-			Farm.near([params[:latitude], params[:longitude]], 20, units: :km)
+			Farm.near([params[:latitude], params[:longitude]], 50, units: :km)
 		else
-			Farm.all
+			Farm.all.order(name: :asc)
 		end
 
-		@farms = @farms.order(name: :asc).page(params[:page])
+		@farms = @farms.page(params[:page])
 
 		respond_to do |format|
 			format.html
