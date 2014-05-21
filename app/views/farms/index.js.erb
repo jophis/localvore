@@ -8,7 +8,8 @@ $('#farms').append("<%= j (render @farms) %>");
 
 $('.pagination').replaceWith('<%= j paginate(@farms) %>')
 
-coords = <%= raw @farms.map {|f| {latitude: f.latitude.to_f, longitude: f.longitude.to_f}}.to_json %>;
+coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
+	
 
 var bounds = new google.maps.LatLngBounds();
 coords.forEach(function(coord) {

@@ -8,6 +8,9 @@ class FarmsController < ApplicationController
 		elsif params[:tag]
 			Farm.tagged_with(params[:tag]).order(name: :asc)
 		elsif params[:latitude] && params[:longitude]
+			session[:latitude] = params[:latitude]
+			session[:longitude] = params[:longitude]
+			
 			Farm.near([params[:latitude], params[:longitude]], 50, units: :km)
 		else
 			Farm.all.order(name: :asc)

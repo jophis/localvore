@@ -10,6 +10,7 @@ $(function (){
 	}
 });
 
+var locationChecked = false;
 var map;
 var markers = [];
 
@@ -39,6 +40,15 @@ function addMarkers(coords) {
 			map: map,
 			icon: image
 		});
+    console.log(coord);
+		var infowindow = new google.maps.InfoWindow({
+      content: coord.infoWindow
+		});
+	
+		google.maps.event.addListener(myMarker, 'click', function() {
+    	infowindow.open(map,myMarker);
+ 		});
+		
 		markers.push(myMarker);
 	});
 }
@@ -57,6 +67,7 @@ $(document).ready(function(){
 	}
 	
 	if ($("#show-page").length > 0 ) {
+			clearMarkers();
 			addMarker(farmLat, farmLong);
 			console.log("showpage found");
 			map.setCenter(new google.maps.LatLng(farmLat, farmLong));
@@ -83,10 +94,11 @@ $(document).ready(function(){
 	}
 
 	
-	if ($("#geo-locate").length > 0 ) {
+	if (locationChecked === false) {
 		if ("geolocation" in navigator) {
 			console.log("geolocation running...");
 			navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
+			locationChecked = true;
 		}else {
 			alert("Get a better browser!");
 		}

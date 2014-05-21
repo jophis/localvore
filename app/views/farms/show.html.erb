@@ -12,9 +12,6 @@
 <p> <%= @farm.description %> </p>
 <p> Foods grown here: <%= raw @farm.tag_list.map { |t| link_to t, tag_path(u(t)) }.join(', ')%></p>
 
-
-
-
 <div id="map-canvas"></div>
 
 
