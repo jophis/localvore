@@ -71,7 +71,6 @@ $(document).ready(function(){
 			addMarker(farmLat, farmLong);
 			console.log("showpage found");
 			map.setCenter(new google.maps.LatLng(farmLat, farmLong));
-
 	}
 
 	function geolocationSuccess(position) {
@@ -92,9 +91,8 @@ $(document).ready(function(){
 	function geolocationError(error) {
 		console.log("There was an error :( ");
 	}
-
 	
-	if (locationChecked === false) {
+	if ($("#geo-locate").length > 0) {
 		if ("geolocation" in navigator) {
 			console.log("geolocation running...");
 			navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);

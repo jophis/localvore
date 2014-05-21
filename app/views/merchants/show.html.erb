@@ -2,29 +2,25 @@
 <h1> <%= @merchant.name %></h1>
 
 
-
-
-
 <%= link_to "Back to Farms", farms_url %> | <%= link_to "Edit Merchant", edit_merchant_path(@merchant) %>|
 <%= link_to "Delete Merchant", @merchant, :confirm => "Are you sure you want to delete?", :method => :delete %>
 
 <h2> <%= @merchant.address %> </h2>
 <p> <%= @merchant.description %> </p>
+<p> <%= @merchant.farms %> </p>
 
 
 
 <div id="map-canvas"></div>
+<div id="show-page"></div>
 
-<!-- Hardcoding sources to all farms for now-->
-<% @source_list = Farm.all%>
-<%= @source_list %>
+
 
 <%= javascript_tag do %>
-	window.latitude = <%= @merchant.latitude %>;
-	window.longitude = <%= @merchant.longitude %>;
-	window.coords = <%= raw [{latitude: @merchant.latitude, longitude: @merchant.longitude}].to_json %>
-	window.polyCoords = <%= raw @source_list.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f }}.to_json
-		%>
-	flightPath.setMap(map);
+	window.farmLat = <%= @merchant.latitude %>;
+	window.farmLong = <%= @merchant.longitude %>;
+	window.polyCoords = <%= raw @merchant.farms { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f }}.to_json%>
+	console.log(polyCoords);
+<!-- 	flightPath.setMap(map); -->
 <% end %>
 
