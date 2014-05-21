@@ -18,7 +18,7 @@ function initializeMap() {
 		zoom: 8,
 		center: new google.maps.LatLng(43.64745269, -79.3870772),
 		mapTypeId: google.maps.MapTypeId.TERRAIN
-	}
+	};
 
 	map = new google.maps.Map($('#map-canvas')[0], mapOptions)
 }
@@ -55,6 +55,13 @@ $(document).ready(function(){
 	if ($("#map-canvas").length > 0 ) {
 			initializeMap();
 	}
+	
+	if ($("#show-page").length > 0 ) {
+			addMarker(farmLat, farmLong);
+			console.log("showpage found");
+			map.setCenter(new google.maps.LatLng(farmLat, farmLong));
+
+	}
 
 	function geolocationSuccess(position) {
 		var latitude = position.coords.latitude;
@@ -75,13 +82,15 @@ $(document).ready(function(){
 		console.log("There was an error :( ");
 	}
 
-// Add condition so this doesnt run on every page
-	if ("geolocation" in navigator) {
-		console.log("geolocation running...")
-		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
-	}else {
-		alert("Get a better browser!");
-	};
+	
+	if ($("#geo-locate").length > 0 ) {
+		if ("geolocation" in navigator) {
+			console.log("geolocation running...");
+			navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
+		}else {
+			alert("Get a better browser!");
+		}
+	}
 });
 
 $(document).ready(function() {
@@ -104,5 +113,5 @@ $(document).ready(function() {
 				width: 'resolve'
 			});
 		}
-	})
+	});
 });

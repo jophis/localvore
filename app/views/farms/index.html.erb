@@ -20,6 +20,9 @@
 
 <p id="farms-pagination"><%= paginate @farms %></p>
 
+
+<div id="geo-locate"></div>
+
 <%= javascript_tag do %>
 	window.coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f,longitude: f.longitude.to_f }}.to_json %>
 	<% end %>

@@ -15,6 +15,7 @@ coords.forEach(function(coord) {
   myLatLng = new google.maps.LatLng(coord.latitude, coord.longitude);
   bounds.extend(myLatLng);
 });
+console.log("tesT")
 map.fitBounds(bounds);
 
 addMarkers(coords);

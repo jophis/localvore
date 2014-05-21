@@ -17,9 +17,11 @@
 
 <div id="map-canvas"></div>
 
+
 <%= javascript_tag do %>
-	window.latitude = <%= @farm.latitude %>;
-	window.longitude = <%= @farm.longitude %>;
+	window.farmLat = <%= @farm.latitude %>;
+	window.farmLong = <%= @farm.longitude %>;
 	window.coords = <%= raw [{latitude: @farm.latitude, longitude: @farm.longitude}].to_json %>
 <% end %>
 
+<div id="show-page"></div>
