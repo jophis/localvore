@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   get 'tags/:tag', to: 'farms#index', as: :tag
   resources :farms
-  resources :merchants do
-    get :autocomplete_farm_name, :on => :collection
-  end
+  resources :merchants
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

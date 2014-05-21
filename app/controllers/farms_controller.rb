@@ -4,10 +4,10 @@ class FarmsController < ApplicationController
 
 	def index
 		@farms = if params[:search]
-			Farm.tagged_with(params[:search], :wild => true, :any => true).order(name: :asc)
+			Farm.tagged_with(params[:search], :wild => true, :any => true)
 		elsif params[:tag]
 			Farm.tagged_with(params[:tag]).order(name: :asc)
-		elsif params[:longitude] && params[:latitude]
+		elsif params[:latitude] && params[:longitude]
 			Farm.near([params[:latitude], params[:longitude]], 50, units: :km)
 		else
 			Farm.all.order(name: :asc)
