@@ -13,7 +13,7 @@
 <div id="map-container">
   <div id="map-canvas"></div>
 </div>
-
+<div id="geo-locate"></div>
 <div id="farms">
   <p>Loading farms</p>
 </div>
@@ -21,8 +21,8 @@
 <p id="farms-pagination"><%= paginate @farms %></p>
 
 
-<div id="geo-locate"></div>
+
 
 <%= javascript_tag do %>
-	window.coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f,longitude: f.longitude.to_f,farmName: f.name, address: f.address }}.to_json %>
+	window.coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f,longitude: f.longitude.to_f, farmName: f.name, address: f.address }}.to_json %>
 	<% end %>
