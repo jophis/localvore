@@ -74,7 +74,7 @@ function setPoly(){
 	var flightPath = new google.maps.Polyline({
 		path: flightPlanCoordinates,
 		geodesic: true,
-		strokeColor: '#FF0000',
+		strokeColor: '#5C832F',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});
@@ -91,8 +91,8 @@ $(document).ready(function(){
 		clearMarkers();
 		addMarker(farmLat, farmLong);
 		console.log("showpage found");
-
 		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
+		if($("#merch-show").length >0 ){
 		setPoly();
 		var bounds = new google.maps.LatLngBounds();
 		polyCoords.forEach(function(polyCoord) {
@@ -100,9 +100,8 @@ $(document).ready(function(){
   	bounds.extend(myLatLng);
 		});
 		map.fitBounds(bounds);
-
 		addMarkers(polyCoords);
-		};
+		}};
 
 
 	function geolocationSuccess(position) {
