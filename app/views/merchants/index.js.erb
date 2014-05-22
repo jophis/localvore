@@ -1,0 +1,3 @@
+merchants_coords = <%= raw @merchants.map { |m| { latitude: m.latitude.to_f, longitude: m.longitude.to_f, infoWindow: (render partial: "info_window", locals: {merchant: m}) }}.to_json %>
+
+addMarkers(merchants_coords, 1);

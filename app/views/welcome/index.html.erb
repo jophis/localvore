@@ -8,7 +8,11 @@
 <div id="map-container">
   <div id="map-canvas"></div>
 </div>
-
+<div class="map-controls">
+  <label></label>
+  <input type="checkbox" id="farms-checkbox" checked>Farms<br>
+  <input type="checkbox" id="merchants-checkbox" label="merchants" checked>Merchants
+</div>
 <%= form_tag farms_path, method: :get, authentication: false, id: 'search-form' do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search" %>
