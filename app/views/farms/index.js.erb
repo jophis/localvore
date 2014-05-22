@@ -10,12 +10,6 @@ $('#farms').append("<%= j (render @farms) %>");
 coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
 	
 
-var bounds = new google.maps.LatLngBounds();
-coords.forEach(function(coord) {
-  myLatLng = new google.maps.LatLng(coord.latitude, coord.longitude);
-  bounds.extend(myLatLng);
-});
-console.log("tesT")
-map.fitBounds(bounds);
-
-addMarkers(coords);
+map.setCenter(new google.maps.LatLng(<%= params[:latitude]%> , <%= params[:longitude]%>));
+map.setZoom(10);
+addMarkers(coords, 0);
