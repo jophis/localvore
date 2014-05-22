@@ -1,6 +1,11 @@
 // var locationChecked = false;
 var map;
-var markers = [];
+var farmMarkers = [];
+var merchMarkers = [];
+var icons = [
+"http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-04bfbf/shapecolor-white/shadow-1/border-color/symbolstyle-color/symbolshadowstyle-no/gradient-no/farm-2.png",
+"http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f7e967/shapecolor-light/shadow-1/border-white/symbolstyle-dark/symbolshadowstyle-no/gradient-no/conveniencestore.png"
+]
 
 function initializeMap() {
 	var mapOptions = {
@@ -9,41 +14,46 @@ function initializeMap() {
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	};
 
-	map = new google.maps.Map($('#map-canvas')[0], mapOptions)
+	map = new google.maps.Map($('#map-canvas')[0], mapOptions);
 }
 
-function addMarker( latitude, longitude ) {
+function addMarker( latitude, longitude, num ) {
 	var myMarker = new google.maps.Marker({
 		position: new google.maps.LatLng(latitude, longitude),
-		map: map
+		map: map,
+		icon: icons[num]
 	});
-	markers.push(myMarker);
+	if (num === 0) {
+		farmMarkers.push(myMarker);
+	} else {
+		merchMarkers.push(myMarker);
+	}
+
+	return myMarker;
 }
 
 var infowindow = new google.maps.InfoWindow({
 	content: ''
 });
 
-function addMarkers(coords) {
+
+
+function addMarkers(coords, num) {
 	var image = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
 	coords.forEach (function(coord) {
-		var myMarker = new google.maps.Marker({
-			position: new google.maps.LatLng(coord.latitude, coord.longitude),
-			map: map,
-			icon: image
-		});
+		
+		var myMarker = addMarker(coord.latitude, coord.longitude, num);
 
 		google.maps.event.addListener(myMarker, 'click', function() {
 			infowindow.close();
-			infowindow.setContent(content)
+			infowindow.setContent(content);
 			infowindow.open(map,myMarker);
 		});
-		var content = coord.infoWindow
-		markers.push(myMarker);
+		var content = coord.infoWindow;
 	});
 }
 
-function clearMarkers() {
+function clearMarkers(markers) {
 	markers.forEach(function(marker) {
 		marker.setMap(null);
 	});
@@ -62,7 +72,7 @@ function setPoly(){
 	var flightPath = new google.maps.Polyline({
 		path: flightPlanCoordinates,
 		geodesic: true,
-		strokeColor: '#5C832F',
+		strokeColor: '#04BFBF',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});
@@ -76,20 +86,28 @@ $(document).ready(function(){
 	}
 	
 	if ($("#show-page").length > 0 ) {
-		clearMarkers();
-		addMarker(farmLat, farmLong);
+		clearMarkers(farmMarkers);
+		clearMarkers(merchMarkers);
+		addMarker(farmLat, farmLong, 0);
 		console.log("showpage found");
 		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
-		if($("#merch-show").length >0 ){
+	};
+
+	if($("#merch-show").length >0 ){
+		clearMarkers(farmMarkers);
+		clearMarkers(merchMarkers);
+		addMarker(farmLat, farmLong, 1)
+		console.log("showpage found");
+		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
 		setPoly();
 		var bounds = new google.maps.LatLngBounds();
 		polyCoords.forEach(function(polyCoord) {
-  	myLatLng = new google.maps.LatLng(polyCoord.latitude, polyCoord.longitude);
-  	bounds.extend(myLatLng);
+			myLatLng = new google.maps.LatLng(polyCoord.latitude, polyCoord.longitude);
+			bounds.extend(myLatLng);
 		});
 		map.fitBounds(bounds);
-		addMarkers(polyCoords);
-		}};
+		addMarkers(polyCoords, 0);
+	};
 
 
 	function geolocationSuccess(position) {
