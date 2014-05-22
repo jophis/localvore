@@ -32,6 +32,10 @@ function addMarker( latitude, longitude ) {
 	markers.push(myMarker);
 }
 
+var infowindow = new google.maps.InfoWindow({
+	content: ''
+});
+
 function addMarkers(coords) {
 	var image = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
 	coords.forEach (function(coord) {
@@ -40,15 +44,13 @@ function addMarkers(coords) {
 			map: map,
 			icon: image
 		});
-		console.log(coord);
-		var infowindow = new google.maps.InfoWindow({
-			content: coord.infoWindow
-		});
 
 		google.maps.event.addListener(myMarker, 'click', function() {
+			infowindow.close();
+			infowindow.setContent(content)
 			infowindow.open(map,myMarker);
 		});
-		
+		var content = coord.infoWindow
 		markers.push(myMarker);
 	});
 }
@@ -89,8 +91,8 @@ $(document).ready(function(){
 		console.log("showpage found");
 		map.setCenter(new google.maps.LatLng(farmLat, farmLong)
 		// setPoly();
-			);
-		}
+		);
+	}
 
 	function geolocationSuccess(position) {
 		var latitude = position.coords.latitude;
