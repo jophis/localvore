@@ -1,7 +1,5 @@
 class MerchantsController < ApplicationController
-	before_filter :farm_names, only: [:new, :edit]
 	before_filter :tag_names, only: [:new, :edit]
-
 	
 	def index
 		@merchants = Merchant.all
@@ -13,6 +11,7 @@ class MerchantsController < ApplicationController
 	end
 
 	def new
+		@farms = Farm.all
 		@merchant = Merchant.new
 	end
 
@@ -37,12 +36,7 @@ class MerchantsController < ApplicationController
 
 	private
 	def merchant_params
-		params.require(:merchant).permit(:source_list, :name, :address, :description, :phone_number, :website)
-	end
-
-	def farm_names
-		@farm_names = Farm.all.map do |farm| {id: farm.id, text: farm.name}
-		end
+		params.require(:merchant).permit(:name, :address, :description, :phone_number, :website)
 	end
 
 	def tag_names
