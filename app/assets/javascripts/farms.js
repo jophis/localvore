@@ -71,7 +71,7 @@ function setPoly(){
 	var flightPath = new google.maps.Polyline({
 		path: flightPlanCoordinates,
 		geodesic: true,
-		strokeColor: '#FF0000',
+		strokeColor: '#5C832F',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});
@@ -96,7 +96,6 @@ $(document).ready(function(){
   	bounds.extend(myLatLng);
 		});
 		map.fitBounds(bounds);
-
 		addMarkers(polyCoords);
 		};
 
