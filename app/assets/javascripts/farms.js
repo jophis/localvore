@@ -1,16 +1,4 @@
-$(function (){
-	if ($('.pagination').length) {
-		$(window).scroll(function() {
-			var url = $('.pagination span.next').children().attr('href');
-			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 250) {
-				$('.pagination').text('Fetching more farms...');
-				return $.getScript(url)
-			}
-		});
-	}
-});
-
-var locationChecked = false;
+// var locationChecked = false;
 var map;
 var markers = [];
 
@@ -127,7 +115,7 @@ $(document).ready(function(){
 		if ("geolocation" in navigator) {
 			console.log("geolocation running...");
 			navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
-			locationChecked = true;
+			window.locationChecked = true;
 		}else {
 			alert("Get a better browser!");
 		}
