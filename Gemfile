@@ -30,7 +30,6 @@ gem 'debugger', group: [:development, :test]
 gem 'foundation-rails'
 gem 'figaro'
 gem 'geocoder'
-gem 'kaminari'
 gem 'nokogiri'
 gem 'quiet_assets'
 gem 'select2-rails'
