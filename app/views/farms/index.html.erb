@@ -22,7 +22,3 @@
 
 
 
-
-<%= javascript_tag do %>
-	window.coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f,longitude: f.longitude.to_f, farmName: f.name, address: f.address }}.to_json %>
-	<% end %>

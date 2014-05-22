@@ -40,7 +40,6 @@ function addMarkers(coords) {
 			map: map,
 			icon: image
 		});
-		console.log(coord);
 		var infowindow = new google.maps.InfoWindow({
 			content: coord.infoWindow
 		});
@@ -62,9 +61,11 @@ function clearMarkers() {
 
 function setPoly(){
 	var flightPlanCoordinates =	[];
+	var merchLoc = new google.maps.LatLng(farmLat, farmLong);
 	polyCoords.forEach (function(polyCoord){
-		flightPlanCoordinates.push(farmLat, farmLong);
-		flightPlanCoordinates.push(polyCoords.latitude, polyCoords.longitude);
+		var sourceLoc = new google.maps.LatLng( polyCoord.latitude, polyCoord.longitude );
+		flightPlanCoordinates.push(merchLoc);
+		flightPlanCoordinates.push(sourceLoc);
 	});
 
 	var flightPath = new google.maps.Polyline({
@@ -87,10 +88,17 @@ $(document).ready(function(){
 		clearMarkers();
 		addMarker(farmLat, farmLong);
 		console.log("showpage found");
-		map.setCenter(new google.maps.LatLng(farmLat, farmLong)
-		// setPoly();
-			);
-		}
+		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
+		setPoly();
+		var bounds = new google.maps.LatLngBounds();
+		polyCoords.forEach(function(polyCoord) {
+  	myLatLng = new google.maps.LatLng(polyCoord.latitude, polyCoord.longitude);
+  	bounds.extend(myLatLng);
+		});
+		map.fitBounds(bounds);
+
+		addMarkers(polyCoords);
+		};
 
 	function geolocationSuccess(position) {
 		var latitude = position.coords.latitude;
