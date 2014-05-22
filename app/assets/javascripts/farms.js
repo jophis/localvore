@@ -91,8 +91,8 @@ $(document).ready(function(){
 		clearMarkers();
 		addMarker(farmLat, farmLong);
 		console.log("showpage found");
-
 		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
+		if($("#merch-show").length >0 ){
 		setPoly();
 		var bounds = new google.maps.LatLngBounds();
 		polyCoords.forEach(function(polyCoord) {
@@ -101,7 +101,7 @@ $(document).ready(function(){
 		});
 		map.fitBounds(bounds);
 		addMarkers(polyCoords);
-		};
+		}};
 
 
 	function geolocationSuccess(position) {
