@@ -17,6 +17,8 @@ class MerchantsController < ApplicationController
 
 	def create
 		@merchant = Merchant.new(merchant_params)
+		farm_ids = params[:merchant][:farm_ids]
+		@merchant.farm_ids = farm_ids
 		if @merchant.save
 			redirect_to @merchant
 		else 
@@ -36,11 +38,11 @@ class MerchantsController < ApplicationController
 
 	private
 	def merchant_params
-		params.require(:merchant).permit(:name, :address, :description, :phone_number, :website)
+		params.require(:merchant).permit(:name, :address, :description, :phone_number, :website, :farm_ids)
 	end
 
 	def tag_names
 		@tag_names = Farm.tag_counts.inject([]) do |array, tag| array.push(tag.name); array end
 	end
 
-	end
+end
