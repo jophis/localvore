@@ -6,7 +6,6 @@ $('#farms').html("<%= j (render @farms) %>");
 $('#farms').append("<%= j (render @farms) %>");
 <% end %>
 
-$('.pagination').replaceWith('<%= j paginate(@farms) %>')
 
 coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
 	

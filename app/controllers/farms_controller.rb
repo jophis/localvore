@@ -16,8 +16,6 @@ class FarmsController < ApplicationController
 			Farm.all.order(name: :asc)
 		end
 
-		@farms = @farms.page(params[:page])
-
 		respond_to do |format|
 			format.html
 			format.js
