@@ -114,6 +114,9 @@ $(document).ready(function(){
 	function geolocationSuccess(position) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
+		map.setCenter(new google.maps.LatLng(latitude, longitude));
+		map.setZoom(10);
+
 
 		// $.ajax({
 		// 	url: "/farms",
