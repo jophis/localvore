@@ -1,16 +1,4 @@
-$(function (){
-	if ($('.pagination').length) {
-		$(window).scroll(function() {
-			var url = $('.pagination span.next').children().attr('href');
-			if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 250) {
-				$('.pagination').text('Fetching more farms...');
-				return $.getScript(url)
-			}
-		});
-	}
-});
-
-var locationChecked = false;
+// var locationChecked = false;
 var map;
 var farmMarkers = [];
 var merchMarkers = [];
@@ -129,6 +117,16 @@ $(document).ready(function(){
 			},
 			dataType: 'script'
 		});
+
+		$.ajax({
+			url:"/merchants",
+			method: "GET",
+			data: {
+				latitude: latitude,
+				logitude: longitude
+			},
+			dataType: 'script'
+		});
 	}
 
 	function geolocationError(error) {
@@ -139,32 +137,27 @@ $(document).ready(function(){
 		if ("geolocation" in navigator) {
 			console.log("geolocation running...");
 			navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
-			locationChecked = true;
+			window.locationChecked = true;
 		}else {
 			alert("Get a better browser!");
 		}
 	}
-});
 
-$(document).ready(function() {
-	if (window.tag_names) {
-		$("#farm_tag_list").select2({
-			tags: tag_names,
-			createSearchChoice: function() { return null; },
-			tokenSeparators: [",", " "],
-			width: 'resolve'
-		});
-	}
 
-	$(function() {
-		if (window.merchant_names) {
-			$("#farm_vendor_list").select2({
-				data: merchant_names,
-				multiple: true,
-				createSearchChoice: function() { return null; },
-				tokenSeparators: [",", " "],
-				width: 'resolve'
-			});
+
+	$("#farms-checkbox").change(function() {
+		if (this.checked) {
+			addMarkers(farms_coords, 0);
+		} else {
+			clearMarkers(farmMarkers)
+		}
+	});
+
+	$("#merchants-checkbox").change(function() {
+		if (this.checked) {
+			addMarkers(merchants_coords, 1);
+		} else {
+			clearMarkers(merchMarkers)
 		}
 	});
 });

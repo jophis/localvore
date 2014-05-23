@@ -21,8 +21,6 @@
 	window.farmLat = <%= @merchant.latitude %>;
 	window.farmLong = <%= @merchant.longitude %>;
 	window.polyCoords = <%= raw @merchant.farms.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: r})}}.to_json %>
-	console.log(polyCoords);
-<!-- 	flightPath.setMap(map); -->
 <% end %>
 
 

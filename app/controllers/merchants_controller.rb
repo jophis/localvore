@@ -18,7 +18,7 @@ class MerchantsController < ApplicationController
 	def create
 		@merchant = Merchant.new(merchant_params)
 		farm_ids = params[:merchant][:farm_ids]
-		@merchant.farm_ids = farm_ids
+		@merchant.farm_ids = farm_ids.to_i
 		if @merchant.save
 			redirect_to @merchant
 		else 
@@ -38,7 +38,7 @@ class MerchantsController < ApplicationController
 
 	private
 	def merchant_params
-		params.require(:merchant).permit(:name, :address, :description, :phone_number, :website, :farm_ids)
+		params.require(:merchant).permit(:name, :address, :description, :phone_number, :website, :farm_ids => [], :tag_list)
 	end
 
 	def tag_names
