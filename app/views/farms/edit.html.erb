@@ -1,5 +1,7 @@
-<h1>Edit Your Farm</h1>
-<br>
-<div class="links"><%= link_to "Back", @farm %></div>
+<div class="container">
+	<h1>Edit Your Farm</h1>
+	<br>
+	<div class="links"><%= link_to "Back", @farm %></div>
 
-<%= render partial: "form", locals:{tag_names: @tag_names, merchant_names: @merchant_names} %>
+	<%= render partial: "form", locals:{tag_names: @tag_names, merchant_names: @merchant_names} %>
+</div>

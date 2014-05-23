@@ -1,40 +1,42 @@
-<div class="row">
-  <div class="large-12 columns">
-  	<h1> <%= @merchant.name %></h1>
-  	<h2> <%= @merchant.address %> </h2>
-  </div>
-</div>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="large-12 columns">
+      	<h1> <%= @merchant.name %></h1>
+      	<h2> <%= @merchant.address %> </h2>
+      </div>
+    </div>
 
 
-<div class="row">
-  <div class="large-7 columns">
-  	<div id="map-canvas"></div>
-  </div>
+    <div class="row">
+      <div class="large-7 columns">
+      	<div id="map-canvas"></div>
+      </div>
 
-  <div class="large-5 columns">
-  	<div class="panel">
-  		<h4> About us: </h4>
-	  	<p> <%= @merchant.description %> </p>
-      <div id="show-page"></div>
-  <div id="merch-show"></div>
-		
-			
-    	<%= javascript_tag do %>
-      window.farmLat = <%= @merchant.latitude %>;
-      window.farmLong = <%= @merchant.longitude %>;
-      window.polyCoords = <%= raw @merchant.farms.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f, infoWindow: (render partial: "info_window", locals: {merchant: r})}}.to_json %>
-    <% end %>
+      <div class="large-5 columns">
+      	<div class="panel">
+      		<h4> About us: </h4>
+    	  	<p> <%= @merchant.description %> </p>
+          <div id="show-page"></div>
+      <div id="merch-show"></div>		
+        	<%= javascript_tag do %>
+          window.farmLat = <%= @merchant.latitude %>;
+          window.farmLong = <%= @merchant.longitude %>;
+          window.polyCoords = <%= raw @merchant.farms.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f, infoWindow: (render partial: "info_window", locals: {merchant: r})}}.to_json %>
+        <% end %>
 
-		</div>
-	  
-  </div>
-</div>
+    		</div>
+    	  
+      </div>
+    </div>
 
-<div class="row">
-  <div class="large-12 columns">
-		<div class= "panel callout">
-  		<p> Locally grown foods sold here: <%= raw @merchant.tag_list.map { |t| link_to t, tag_path(u(t)) }.join(', ')%></p>
-  	</div>
+    <div class="row">
+      <div class="large-12 columns">
+    		<div class= "panel callout">
+      		<p> Locally grown foods sold here: <%= raw @merchant.tag_list.map { |t| link_to t, tag_path(u(t)) }.join(', ')%></p>
+      	</div>
+      </div>
+    </div>
   </div>
 </div>
 

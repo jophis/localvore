@@ -1,7 +1,9 @@
 <%= link_to merchant_path(merchant.id) do %>
   <h5>
-    <%= link_to merchant.name, merchant %><br/>
-		<%= merchant.description %> <br/>
-		<%= merchant.address %>
+    <%= link_to merchant.name, merchant %>
+    <% if merchant.description %>
+		  <%= merchant.description %> <br/>
+    <% end%>
+		<%= merchant.address %> <br />
   </h5>
 <% end %>

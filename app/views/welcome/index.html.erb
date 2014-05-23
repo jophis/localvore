@@ -8,7 +8,15 @@
 
 <div class="container">
   <div class="row">
-    <div class="large-9 columns">
+    <div class="large-12 columns">
+      <h4 class= "text-center"> The local food movement is a collaborative effort to build more locally based, self-reliant food economies - one in which sustainable food production, processing, distribution, and consumption is integrated to enhance the economic, environmental and social health of a community. Localvore is dedicated to connecting users with locally grown food by allowing merchants and restaurants to disclose farms they purchase goods from.  </h4>
+    </div>  
+  </div>
+  </div>    
+  <div class="container">
+  <div class="row">
+    <div class="large-12 columns">
+      <h2 class="text-center"> Farms & Merchants near you </h2>
       <div id="map-canvas"></div>
       <div class="map-controls">
         <input type="checkbox" id="farms-checkbox" checked>Farms<br>
@@ -16,16 +24,36 @@
       </div>
       <div id="farm-index"></div>
       <div id="geo-locate"></div>
-  <div id="merch-index"></div>
+      <div id="merch-index"></div>
     </div>
-    <div class="large-3 columns">
-      <% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
-        <%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
-      <% end %>
-    </div>
+   
+  
+ <!--  <div class="large-12 columns"> 
+    <ul class="small-block-grid-4">
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+    </ul>
   </div>
-
-
+  <div class="large-12 columns"> 
+    <ul class="small-block-grid-4">
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+    </ul>
+  </div>
+  <div class="large-12 columns"> 
+    <ul class="small-block-grid-4">
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+      <li><img src="http://placehold.it/350x150"></li>
+    </ul>
+  </div> -->
+  
+  </div>
 
   <script type="text/javascript">
     farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>

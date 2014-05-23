@@ -1,42 +1,46 @@
-<div class="row">
-  <div class="large-12 columns">
-  	<h1> <%= @farm.name %></h1>
-  	<h2> <%= @farm.address %> </h2>
-  </div>
+<div class="container">
+	<div class="container">
+	<div class="row">
+	  <div class="large-12 columns">
+	  	<h1> <%= @farm.name %></h1>
+	  	<h2> <%= @farm.address %> </h2>
+	  </div>
+	</div>
+
+
+	<div class="row">
+	  <div class="large-7 columns">
+	  	<div id="map-canvas"></div>
+	  </div>
+
+	  <div class="large-5 columns">
+	  	<div class="panel">
+	  		<h4> About us: </h4>
+		  	<p> <%= @farm.description %> </p>
+		  	<% if !@farm.website.nil? %>
+		  		<%= link_to @farm.website, @farm.website, target: "_blank" %><br>
+				<% end %>
+		  	<%= link_to "Edit Farm", edit_farm_path(@farm) %>|
+				<%= link_to "Delete Farm", @farm, :confirm => "Are you sure you want to delete?", :method => :delete %>
+				
+				<%= javascript_tag do %>
+				window.farmLat = <%= @farm.latitude %>;
+				window.farmLong = <%= @farm.longitude %>;
+				window.coords = <%= raw [{latitude: @farm.latitude, longitude: @farm.longitude}].to_json %>
+				<% end %>
+				<div id="show-page"></div>
+			</div>
+		  
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="large-12 columns">
+			<div class= "panel callout">
+	  		<p> Foods grown here: <%= raw @farm.tag_list.map { |t| link_to t, tag_path(u(t)) }.join(', ')%></p>
+	  	</div>
+	  </div>
+	</div>
 </div>
-
-
-<div class="row">
-  <div class="large-7 columns">
-  	<div id="map-canvas"></div>
-  </div>
-
-  <div class="large-5 columns">
-  	<div class="panel">
-  		<h4> About us: </h4>
-	  	<p> <%= @farm.description %> </p>
-	  	<% if !@farm.website.nil? %>
-	  		<%= link_to @farm.website, @farm.website, target: "_blank" %><br>
-			<% end %>
-	  	<%= link_to "Edit Farm", edit_farm_path(@farm) %>|
-			<%= link_to "Delete Farm", @farm, :confirm => "Are you sure you want to delete?", :method => :delete %>
-			
-			<%= javascript_tag do %>
-			window.farmLat = <%= @farm.latitude %>;
-			window.farmLong = <%= @farm.longitude %>;
-			window.coords = <%= raw [{latitude: @farm.latitude, longitude: @farm.longitude}].to_json %>
-			<% end %>
-			<div id="show-page"></div>
-		</div>
-	  
-  </div>
-</div>
-
-<div class="row">
-  <div class="large-12 columns">
-		<div class= "panel callout">
-  		<p> Foods grown here: <%= raw @farm.tag_list.map { |t| link_to t, tag_path(u(t)) }.join(', ')%></p>
-  	</div>
-  </div>
 </div>
 
