@@ -1,28 +1,35 @@
 
 
-
-<div class="row">
-  <div class="large-9 columns">
-    <div id="map-canvas"></div>
-    <div class="map-controls">
-      <input type="checkbox" id="farms-checkbox" checked>Farms<br>
-      <input type="checkbox" id="merchants-checkbox" label="merchants" checked>Merchants
-    </div>
-    <div id="farm-index"></div>
-    <div id="geo-locate"></div>
-<div id="merch-index"></div>
-  </div>
-  <div class="large-3 columns">
-    <% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
-    <% end %>
-  </div>
+<div class="farm-img" style="background-image: url('<%= image_path "farm_field.jpeg" %>')">
+  <div class="image_filter"></div>
+  <div class="image_text">Eating locally made easy.</div>
 </div>
 
 
+<div class="container">
+  <div class="row">
+    <div class="large-9 columns">
+      <div id="map-canvas"></div>
+      <div class="map-controls">
+        <input type="checkbox" id="farms-checkbox" checked>Farms<br>
+        <input type="checkbox" id="merchants-checkbox" label="merchants" checked>Merchants
+      </div>
+      <div id="farm-index"></div>
+      <div id="geo-locate"></div>
+  <div id="merch-index"></div>
+    </div>
+    <div class="large-3 columns">
+      <% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
+        <%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
+      <% end %>
+    </div>
+  </div>
 
-<script type="text/javascript">
-  farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
-  merch_coords = <%= raw @merchants.map { |m| { latitude: m.latitude.to_f, longitude: m.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: m}) }}.to_json %>
-</script>
 
+
+  <script type="text/javascript">
+    farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
+    merch_coords = <%= raw @merchants.map { |m| { latitude: m.latitude.to_f, longitude: m.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: m}) }}.to_json %>
+  </script>
+
+</div>
