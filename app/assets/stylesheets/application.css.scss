@@ -31,7 +31,7 @@
 }
 
 #map-container {
-  width: 70%;
+  width: 100%;
 }
 
 .map *, .map *:before, .map *:after {
@@ -45,11 +45,11 @@
   padding: 1px 16px;
   
   box-shadow: 0px 0 6px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(top, #B64926, #9C3E20);
-  background: -webkit-linear-gradient(top, #B64926, #9C3E20);
-  background: -moz-linear-gradient(top, #B64926, #9C3E20);
-  background: -o-linear-gradient(top, #B64926, #9C3E20);
-  background-image: -ms-linear-gradient(#B64926, #9C3E20);
+  background: linear-gradient(top, #B64926, #8E2800);
+  background: -webkit-linear-gradient(top, #B64926, #8E2800);
+  background: -moz-linear-gradient(top, #B64926, #8E2800);
+  background: -o-linear-gradient(top, #B64926, #8E2800);
+  background-image: -ms-linear-gradient(#B64926, #8E2800);
   color: white;
   /*font-family: Geneva;*/
 
@@ -80,7 +80,7 @@
 
 .container {
   width: 90%;
-  margin: 30px auto 0 auto;
+  margin: 12px auto 0 auto;
   border-radius: 5px;
   padding: 30px;
   background: #FFFFFF;

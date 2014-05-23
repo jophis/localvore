@@ -1,26 +1,24 @@
- <h1><%= link_to "Farms", farms_path %> </h1>
-<%= link_to "Home", root_url %><br />
-<%= link_to "Post a new Farm", new_farm_path %>
-<br>
-<br>
-<%= form_tag farms_path, method: :get, authentication: false, id: 'search-form' do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div class="container">
+	<div class="container">
+    <h1> Farms </h1> 
+    <%= link_to "Post a new Farm", new_farm_path %>
+    <br />
+    <br />
+    <% if params[:tag] %>
+      <p class="grown-here">Farms that grow <%= @tag %> </p>
+    <% end %>
 
-<% if params[:tag] %>
-  <p class="grown-here">Farms that grow <%= @tag %> </p>
-<% end %>
-
-<div id="farm-index"></div>
-<div id="map-container">
-  <div id="map-canvas"></div>
+    <div id="farm-index"></div>
+    <div id="map-container">
+      <div id="map-canvas"></div>
+    </div>
+    <div id="geo-locate"></div>
+    <br />
+    <div id="farms">
+      <%= render @farms %>
+    </div>
+    <script type="text/javascript">
+      farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
+    </script>
+  </div>
 </div>
-<div id="geo-locate"></div>
-<div id="farms">
-  <%= render @farms %>
-</div>
-
-<script type="text/javascript">
-  farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
-</script>
