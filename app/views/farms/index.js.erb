@@ -1,6 +1,4 @@
-
 farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
-	
+
 map.setCenter(new google.maps.LatLng(<%= params[:latitude]%> , <%= params[:longitude]%>));
 map.setZoom(10);
-addMarkers(farms_coords, 0);

@@ -8,14 +8,15 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-
+<div id="farm-index"></div>
 <div id="map-container">
   <div id="map-canvas"></div>
 </div>
 <div id="geo-locate"></div>
 <div id="farms">
-  <p>Loading farms</p>
+  <%= render @farms %>
 </div>
 
-
-
+<script type="text/javascript">
+  farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
+</script>

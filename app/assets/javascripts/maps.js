@@ -3,8 +3,8 @@ var map;
 var farmMarkers = [];
 var merchMarkers = [];
 var icons = [
-"http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-04bfbf/shapecolor-white/shadow-1/border-color/symbolstyle-color/symbolshadowstyle-no/gradient-no/farm-2.png",
-"http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f7e967/shapecolor-light/shadow-1/border-white/symbolstyle-dark/symbolshadowstyle-no/gradient-no/conveniencestore.png"
+'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
 ]
 
 function initializeMap() {
@@ -85,9 +85,16 @@ $(document).ready(function(){
 		initializeMap();
 	}
 	
+	if ($("#farm-index").length > 0 ) {
+		addMarkers(farms_coords, 0);
+	};
+
+	if ($("#merch-index").length > 0 ) {
+		addMarkers(coords, 1);
+	};
+
+
 	if ($("#show-page").length > 0 ) {
-		clearMarkers(farmMarkers);
-		clearMarkers(merchMarkers);
 		addMarker(farmLat, farmLong, 0);
 		console.log("showpage found");
 		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
@@ -114,25 +121,25 @@ $(document).ready(function(){
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 
-		$.ajax({
-			url: "/farms",
-			method: "GET",
-			data: {
-				latitude: latitude,
-				longitude: longitude
-			},
-			dataType: 'script'
-		});
+		// $.ajax({
+		// 	url: "/farms",
+		// 	method: "GET",
+		// 	data: {
+		// 		latitude: latitude,
+		// 		longitude: longitude
+		// 	},
+		// 	dataType: 'script'
+		// });
 
-		$.ajax({
-			url:"/merchants",
-			method: "GET",
-			data: {
-				latitude: latitude,
-				logitude: longitude
-			},
-			dataType: 'script'
-		});
+		// $.ajax({
+		// 	url:"/merchants",
+		// 	method: "GET",
+		// 	data: {
+		// 		latitude: latitude,
+		// 		logitude: longitude
+		// 	},
+		// 	dataType: 'script'
+		// });
 	}
 
 	function geolocationError(error) {
@@ -150,7 +157,6 @@ $(document).ready(function(){
 	}
 
 
-
 	$("#farms-checkbox").change(function() {
 		if (this.checked) {
 			addMarkers(farms_coords, 0);
@@ -166,4 +172,13 @@ $(document).ready(function(){
 			clearMarkers(merchMarkers)
 		}
 	});
+
+	 // $('#search-form').submit(function(event) {
+  //   event.preventDefault();
+  //   var searchValue = $('#search').val();
+
+  //   $.getScript('/tags/' + searchValue);
+  //   clearMarkers(farmMarkers)
+  //   clearMarkers(merchMarkers)
+  // });
 });
