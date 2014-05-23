@@ -2,12 +2,14 @@
 var map;
 var farmMarkers = [];
 var merchMarkers = [];
+var mapStyle =[];
 
 function initializeMap() {
 	var mapOptions = {
 		zoom: 8,
 		center: new google.maps.LatLng(43.64745269, -79.3870772),
-		mapTypeId: google.maps.MapTypeId.TERRAIN
+		mapTypeId: google.maps.MapTypeId.TERRAIN,
+		styles: mapStyle
 	};
 
 	map = new google.maps.Map($('#map-canvas')[0], mapOptions);
@@ -73,6 +75,18 @@ function setPoly(){
 	flightPath.setMap(map);
 }
 
+// function avgTravel (){
+// 	var distanceSum;
+// 	var merchLoc = new google.maps.LatLng(farmLat, farmLong);
+// 	polyCoords.forEach (function(polyCoord){
+// 		var sourceLoc = new google.maps.LatLng( polyCoord.latitude, polyCoord.longitude )
+// 		computeDistanceBetween(merchLoc, sourceLoc);
+
+
+
+// 	})
+// }
+
 $(document).ready(function(){
 
 	if ($("#map-canvas").length > 0 ) {
@@ -84,7 +98,7 @@ $(document).ready(function(){
 	};
 
 	if ($("#merch-index").length > 0 ) {
-		addMarkers(coords, 1);
+		addMarkers(merch_coords, 1);
 	};
 
 
@@ -115,7 +129,7 @@ $(document).ready(function(){
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		map.setCenter(new google.maps.LatLng(latitude, longitude));
-		map.setZoom(10);
+		map.setZoom(11);
 
 
 		// $.ajax({
