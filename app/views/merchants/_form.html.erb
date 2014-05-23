@@ -26,16 +26,16 @@
     </div>
   </div>
 
-    <div class="field">
+   <!--  <div class="field">
     <%= f.label :tags_list, "Available Products"  %><br />
     <%= f.text_area :tag_list %>
-  </div>
+  </div> -->
   <br>
 
   <div class="row">
     <div class="small-9 columns">
       <div class="projectinfo">
-        <%= f.label :farm_ids %><br>
+        <%= f.label :farm_ids, "Sources" %><br>
         <%= f.select :farm_ids, options_from_collection_for_select(@farms, :id, :name),{}, { multiple: true, style:"width: 500px;" } %>
       </div>
     </div>
