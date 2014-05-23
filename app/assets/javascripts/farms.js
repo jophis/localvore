@@ -14,10 +14,6 @@ var locationChecked = false;
 var map;
 var farmMarkers = [];
 var merchMarkers = [];
-var icons = [
-"http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-04bfbf/shapecolor-white/shadow-1/border-color/symbolstyle-color/symbolshadowstyle-no/gradient-no/farm-2.png",
-"http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f7e967/shapecolor-light/shadow-1/border-white/symbolstyle-dark/symbolshadowstyle-no/gradient-no/conveniencestore.png"
-]
 
 function initializeMap() {
 	var mapOptions = {
@@ -47,8 +43,6 @@ function addMarker( latitude, longitude, num ) {
 var infowindow = new google.maps.InfoWindow({
 	content: ''
 });
-
-
 
 function addMarkers(coords, num) {
 	var image = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
@@ -84,7 +78,7 @@ function setPoly(){
 	var flightPath = new google.maps.Polyline({
 		path: flightPlanCoordinates,
 		geodesic: true,
-		strokeColor: '#04BFBF',
+		strokeColor: '#B64926',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
 	});

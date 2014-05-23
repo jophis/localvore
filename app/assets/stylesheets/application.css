@@ -10,9 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require foundation_and_overrides
  *= require select2
  *= require_self
- *= require foundation_and_overrides
+ 
 
  *= require_tree .
  */
@@ -32,3 +33,37 @@
 .map *, .map *:before, .map *:after {
     -webkit-transform: none !important; 
 }
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  top: 0;
+  padding: 1px 16px;
+  
+  box-shadow: 0px 0 6px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(top, #B64926, #9C3E20);
+  background: -webkit-linear-gradient(top, #B64926, #9C3E20);
+  background: -moz-linear-gradient(top, #B64926, #9C3E20);
+  background: -o-linear-gradient(top, #B64926, #9C3E20);
+  background-image: -ms-linear-gradient(#B64926, #9C3E20);
+  color: white;
+  /*font-family: Geneva;*/
+}
+
+.navbar a {
+	color: white;
+}
+
+.navbuttons {
+  float: right;
+  padding: 0 0px 0 0;
+  margin: 13px 0 0 0;
+}
+.navbuttons .navbutt {
+	display: inline-block;
+	padding: 0px 10px 0px 10px;
+}
+
+
+
+

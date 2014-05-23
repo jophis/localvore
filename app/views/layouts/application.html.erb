@@ -18,32 +18,29 @@
 </head>
 
 <body>
-	<nav class="top-bar" data-topbar>
-		<ul class="title-area">
-			<li class="name">
-				<h1><%= link_to "Localvore", root_path %></h1>
-			</li>
-			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-		</ul>
-
-		<section class="top-bar-section">
-			<ul class="right">
-				<li><%= link_to "Farms", farms_url %></li>
-				<li><a href="#">Farms</a></li>
-				<li><a href="#">Ingredients</a></li>
-			</ul>
-		</section>
-	</nav>
-
-
-
-
-	<div class="row">
-		<div class="large-12 columns">
-			<%= yield %>
+		<div class="navbar">
+			<div class="navbuttons">
+					<div class="navbutt"><%= link_to "Farms", farms_url %></div>
+					<div class="navbutt"><%= link_to "Merchants", merchants_url %></div>
+					<div class="navbutt"><a href="#">Ingredients</a></div>
+			</div>
+			<h3><img src="http://www.iconsdb.com/icons/download/white/leaf-2-32.png"> <%= link_to "Localvore", root_path %></h3>
 		</div>
 	</div>
-	<%= javascript_include_tag 'application' %>
-</body>
-</html>
+		
+
+		<div class="row">
+			<div class="large-12 columns">
+				<%= yield %>
+			</div>
+		</div>
+		<%= javascript_include_tag 'application' %>
+	</body>
+	</html>
+
+	<%= javascript_tag do %>
+	 window.icons = [
+			"<%= image_url 'farm_marker.png' %>",
+			"<%= image_url 'merch_marker.png' %>"
+			];
+			<% end %>
