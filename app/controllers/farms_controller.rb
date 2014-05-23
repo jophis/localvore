@@ -3,12 +3,13 @@ class FarmsController < ApplicationController
 	before_filter :merchant_list, only: [:new, :edit]
 
 	def index
-		@farms = if params[:search]
-			Farm.tagged_with(params[:search], :wild => true, :any => true)
+		if params[:search]
+			@farms = Farm.tagged_with(params[:search], :wild => true, :any => true)
 		elsif params[:tag]
-			Farm.tagged_with(params[:tag]).order(name: :asc)
+			@farms = Farm.tagged_with(params[:tag]).order(name: :asc)
+			@tag = params[:tag]
 		else
-			Farm.all.order(name: :asc)
+			@farms = Farm.all.order(name: :asc)
 		end
 
 		respond_to do |format|

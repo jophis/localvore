@@ -8,6 +8,10 @@
   <%= submit_tag "Search" %>
 <% end %>
 
+<% if params[:tag] %>
+  <p class="grown-here">Farms that grow <%= @tag %> </p>
+<% end %>
+
 <div id="farm-index"></div>
 <div id="map-container">
   <div id="map-canvas"></div>

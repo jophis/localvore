@@ -8,18 +8,27 @@
   <div class="row">
     <div class="large-9 columns">
       <div id="map-canvas"></div>
-      <div class="map-controls">
-        <input type="checkbox" id="farms-checkbox" checked>Farms<br>
-        <input type="checkbox" id="merchants-checkbox" label="merchants" checked>Merchants
+      <div class="slideTwo">
+        <input type="checkbox" id="farms-checkbox" name="check" checked>
+        <label for="farms-checkbox"></label>
+        <p>Farms</p>
+      </div>
+      <div class="slideTwo">
+        <input type="checkbox" id="merchants-checkbox"
+        checked>
+        <label for="merchants-checkbox"></label>
+        <p>Merchants</p>
       </div>
       <div id="farm-index"></div>
       <div id="geo-locate"></div>
   <div id="merch-index"></div>
     </div>
     <div class="large-3 columns">
-      <% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
-        <%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
-      <% end %>
+      <div class="tag-container">
+        <% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
+          <%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
+        <% end %>
+    </div>
     </div>
   </div>
 
