@@ -129,7 +129,7 @@ $(document).ready(function(){
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		map.setCenter(new google.maps.LatLng(latitude, longitude));
-		map.setZoom(11);
+		map.setZoom(10);
 
 
 		// $.ajax({
@@ -178,7 +178,7 @@ $(document).ready(function(){
 
 	$("#merchants-checkbox").change(function() {
 		if (this.checked) {
-			addMarkers(merchants_coords, 1);
+			addMarkers(merch_coords, 1);
 		} else {
 			clearMarkers(merchMarkers)
 		}

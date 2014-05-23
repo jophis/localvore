@@ -18,7 +18,7 @@ class MerchantsController < ApplicationController
 	def create
 		@merchant = Merchant.new(merchant_params)
 		farm_ids = params[:merchant][:farm_ids]
-		@merchant.farm_ids = farm_ids.to_i
+		@merchant.farm_ids = farm_ids
 		if @merchant.save
 			redirect_to @merchant
 		else 
