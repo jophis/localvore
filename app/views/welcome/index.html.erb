@@ -1,42 +1,25 @@
-<h1> Welcome to Localvore </h1>
 
 
 
-
-
-
-<div id="map-container">
-  <div id="map-canvas"></div>
-</div>
-<div class="map-controls">
-  <label></label>
-  <input type="checkbox" id="farms-checkbox" checked>Farms<br>
-  <input type="checkbox" id="merchants-checkbox" label="merchants" checked>Merchants
-</div>
-<%= form_tag farms_path, method: :get, authentication: false, id: 'search-form' do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
-<% end %>
-
-<div id="geo-locate"></div>
-
-<%= link_to "View all farms", farms_url %><br/>
-<%= link_to "Post a new Farm", new_farm_path %> <br/>
-<%= link_to "View all merchants", merchants_url %><br/>
-<%= link_to "Post a new Merchant", new_merchant_path %><br/>
-<div id= "tag_cloud">
-	<br />
-	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
-		<%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
-	<% end %>
+<div class="row">
+  <div class="large-9 columns">
+    <div id="map-canvas"></div>
+    <div class="map-controls">
+      <input type="checkbox" id="farms-checkbox" checked>Farms<br>
+      <input type="checkbox" id="merchants-checkbox" label="merchants" checked>Merchants
+    </div>
+    <div id="farm-index"></div>
+    <div id="geo-locate"></div>
+<div id="merch-index"></div>
+  </div>
+  <div class="large-3 columns">
+    <% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(u(tag.name)), class: css_class %>
+    <% end %>
+  </div>
 </div>
 
-<div id="farm-index"></div>
-<div id="merch-index"</div>
-<div id="map-container">
-  <div id="map-canvas"></div>
-</div>
-<div id="geo-locate"></div>
+
 
 <script type="text/javascript">
   farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>

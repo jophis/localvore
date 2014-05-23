@@ -30,6 +30,10 @@
 	-webkit-transform: none !important; 
 }
 
+#map-container {
+  width: 70%;
+}
+
 .map *, .map *:before, .map *:after {
     -webkit-transform: none !important; 
 }
@@ -64,12 +68,18 @@
 	padding: 0px 10px 0px 10px;
 }
 
+.navbuttons .navsearch {
+  display: inline-block;
+  padding: 0px 0px 0px 0px;
+  margin: -7px 0px 0px 0px;
+}
+
 
 .container {
   width: 90%;
-  margin: 45px auto 0 auto;
+  margin: 30px auto 0 auto;
   border-radius: 5px;
-  padding: 10px;
+  padding: 30px;
   background: #FFFFFF;
   
 }

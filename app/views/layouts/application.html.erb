@@ -21,9 +21,17 @@
 <body>
 		<div class="navbar">
 			<div class="navbuttons">
+					<div class="navbutt">
+						<div class="navsearch">
+							<%= form_tag farms_path, method: :get, authentication: false, id: 'search-form' do %>
+							<%= text_field_tag :search, params[:search], placeholder: "Search by ingredient..." %>
+							
+							<% end %>
+						</div>
+
+					</div>
 					<div class="navbutt"><%= link_to "Farms", farms_url %></div>
 					<div class="navbutt"><%= link_to "Merchants", merchants_url %></div>
-					<div class="navbutt"><a href="#">Ingredients</a></div>
 			</div>
 			<h3><img src="http://www.iconsdb.com/icons/download/white/leaf-2-32.png"> <%= link_to "Localvore", root_path %></h3>
 		</div>
