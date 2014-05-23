@@ -39,5 +39,6 @@
 
 <script type="text/javascript">
   farms_coords = <%= raw @farms.map { |f| { latitude: f.latitude.to_f, longitude: f.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: f})}}.to_json %>
+  merchants_coords = <%= raw @merchants.map { |m| { latitude: m.latitude.to_f, longitude: m.longitude.to_f, infoWindow: (render partial: "info_window", locals: {farm: m}) }}.to_json %>
 </script>
 
