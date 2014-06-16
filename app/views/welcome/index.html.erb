@@ -1,6 +1,12 @@
 <div class="farm-img" style="background-image: url('<%= image_path "farm_field.jpeg" %>')">
   <div class="image_filter"></div>
   <div class="image_text">Eating locally made easy.</div>
+  <%= link_to farms_url do %>
+    <div class="farms_button">Discover farms near you</div>
+  <%end%>
+  <%= link_to merchants_url do %>
+    <div class="merchs_button">Learn more about local merchants</div>
+  <%end%>
 </div>
 
 
