@@ -49,6 +49,21 @@ function addMarkers(coords, num) {
 	});
 }
 
+function addCircle(latitude, longitude){
+    var circleOptions = {
+      strokeColor: '#468966',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#468966',
+      fillOpacity: 0.2,
+      map: map,
+      center: new google.maps.LatLng(latitude, longitude),
+      radius: 100000
+    };	
+  console.log("trying to add circle");
+	var radCircle = new google.maps.Circle(circleOptions);
+}
+
 function clearMarkers(markers) {
 	markers.forEach(function(marker) {
 		marker.setMap(null);
@@ -111,7 +126,7 @@ $(document).ready(function(){
 	if($("#merch-show").length >0 ){
 		clearMarkers(farmMarkers);
 		clearMarkers(merchMarkers);
-		addMarker(farmLat, farmLong, 1)
+		addMarker(farmLat, farmLong, 1);
 		console.log("showpage found");
 		map.setCenter(new google.maps.LatLng(farmLat, farmLong));
 		setPoly();
@@ -122,6 +137,7 @@ $(document).ready(function(){
 		});
 		map.fitBounds(bounds);
 		addMarkers(polyCoords, 0);
+		addCircle(farmLat, farmLong);
 	};
 
 
