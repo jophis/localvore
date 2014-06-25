@@ -4,6 +4,7 @@
       <div class="large-12 columns">
       	<h1> <%= @merchant.name %></h1>
       	<h2> <%= @merchant.address %> </h2>
+        <p> This map shows the farms where <%= @merchant.name %> buys their food! The map also includes a 100 km radius to give you an idea about how far your food has travelled. </p>
       </div>
     </div>
 
@@ -16,17 +17,19 @@
       <div class="large-5 columns">
       	<div class="panel">
       		<h4> About us: </h4>
-    	  	<p> <%= @merchant.description %> </p>
+          <p> <%= @merchant.description %> </p>
+          <%= link_to "Edit Merchant", edit_merchant_path(@merchant) %>|
+          <%= link_to "Delete Merchant", @merchant, :confirm => "Are you sure you want to delete?", :method => :delete %>
           <div id="show-page"></div>
-      <div id="merch-show"></div>		
-        	<%= javascript_tag do %>
+          <div id="merch-show"></div>		
+          <%= javascript_tag do %>
           window.farmLat = <%= @merchant.latitude %>;
           window.farmLong = <%= @merchant.longitude %>;
           window.polyCoords = <%= raw @merchant.farms.map { |r| { latitude: r.latitude.to_f,longitude: r.longitude.to_f, infoWindow: (render partial: "info_window", locals: {merchant: r})}}.to_json %>
-        <% end %>
+          <% end %>
 
-    		</div>
-    	  
+        </div>
+
       </div>
     </div>
 

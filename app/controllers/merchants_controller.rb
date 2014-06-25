@@ -34,8 +34,24 @@ class MerchantsController < ApplicationController
 	end
 
 	def edit
+		@merchant = Merchant.find(params[:id])
 	end
 
+	def update
+		@merchant = Merchant.find(params[:id])
+		if @merchant.update_attributes(merchant_params)
+			redirect_to merchant_path(@merchant)
+		else
+			render :edit
+		end
+	end
+
+	def destroy
+		@merchant = Merchant.find(params[:id])
+		@merchant.destroy
+		redirect_to merchants_path
+	end
+	
 	private
 	def merchant_params
 		params.require(:merchant).permit(:name, :address, :description, :phone_number, :website, :tag_list, :farm_ids => [])
